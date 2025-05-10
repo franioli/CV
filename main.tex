@@ -1,0 +1,373 @@
+%=======================================================================%
+%
+%	DOCUMENT DEFINITION
+%
+%=======================================================================%
+
+%we use article class because we want to fully customize the page and dont use a cv template
+\documentclass[10pt,A4]{article}	
+
+%------------------------------------------------------------------------
+%	ENCODING
+%------------------------------------------------------------------------
+%we use utf8 since we want to build from any machine
+\usepackage[utf8]{inputenc}		
+
+%------------------------------------------------------------------------
+%	LOGIC
+%------------------------------------------------------------------------
+% provides \isempty test
+\usepackage{xifthen}
+
+%------------------------------------------------------------------------
+%	FONT
+%------------------------------------------------------------------------
+% some tex-live fonts - choose your own
+% \usepackage[defaultsans]{droidsans}
+% \usepackage[default]{comfortaa}
+% \usepackage{cmbright}
+% \usepackage[default]{raleway}
+% \usepackage{fetamont}
+\usepackage[default]{gillius}
+% \usepackage[light,math]{iwona}
+% \usepackage[thin]{roboto} 
+
+% set font default
+\renewcommand*\familydefault{\sfdefault} 	
+\usepackage[T1]{fontenc}
+
+% more font size definitions
+\usepackage{moresize}		
+
+\usepackage{fontawesome}
+
+%------------------------------------------------------------------------%	PAGE LAYOUT  DEFINITIONS
+%------------------------------------------------------------------------
+
+%debug page outer frames
+% \usepackage{showframe}			
+
+%define page styles using geometry
+\usepackage[a4paper]{geometry}		
+
+% for example, change the margins to 2 inches all round
+\geometry{top=1.2cm, bottom=-.6cm, left=0.5cm, right=0.5cm} 	
+
+%less space between header and content
+\setlength{\headheight}{-5pt}		
+
+%indentation is zero
+\setlength{\parindent}{0mm}
+
+%-----------------------------------------------------------------------
+%	TABLE /ARRAY DEFINITIONS
+%----------------------------------------------------------------------- 
+%for layouting tables
+\usepackage{multicol}			
+\usepackage{multirow}
+
+%extended aligning of tabular cells
+\usepackage{array}
+
+\newcolumntype{x}[1]{%
+>{\raggedleft\hspace{0pt}}p{#1}}%
+
+%------------------------------------------------------------------------
+%	GRAPHICS DEFINITIONS
+%------------------------------------------------------------------------
+%for header image
+\usepackage{graphicx}
+
+%for floating figures
+\usepackage{wrapfig}
+\usepackage{float}
+%\floatstyle{boxed} 
+%\restylefloat{figure}
+
+%for drawing graphics		
+\usepackage{tikz}				
+\usetikzlibrary{shapes, backgrounds,mindmap, trees}
+
+%------------------------------------------------------------------------
+%	Color DEFINITIONS
+%------------------------------------------------------------------------
+\usepackage{transparent}
+\usepackage{color}
+
+%accent color
+\definecolor{complcol}{RGB}{250,150,10}
+
+%dark background color
+\definecolor{bgcol}{RGB}{110,110,110}
+
+%light background / accent color
+\definecolor{softcol}{RGB}{225,225,225}
+
+\definecolor{sectcol}{RGB}{0,120,150}
+
+%Package for links, must be the last package used
+\usepackage[colorlinks, urlcolor=blue]{hyperref}
+
+%=======================================================================%
+%
+%	DEFINITIONS
+%
+%=======================================================================%
+
+% returns minipage width minus two times \fboxsep
+% to keep padding included in width calculations
+\newcommand{\mpwidth}{\linewidth-\fboxsep-\fboxsep}
+	
+%------------------------------------------------------------------------
+% 	ARROW GRAPHICS in Tikz
+%------------------------------------------------------------------------
+
+% a six pointed arrow poiting to the left
+\newcommand{\tzlarrow}{(0,0) -- (0.2,0) -- (0.3,0.2) -- (0.2,0.4) -- (0,0.4) -- (0.1,0.2) -- cycle;}	
+
+% include the left arrow into a tikz picture
+% param1: fill color
+%
+\newcommand{\larrow}[1]
+{\begin{tikzpicture}[scale=0.58]
+	 \filldraw[fill=#1!100,draw=#1!100!black]  \tzlarrow
+ \end{tikzpicture}
+}
+
+% a six pointed arrow poiting to the right
+\newcommand{\tzrarrow}{ (0,0.2) -- (0.1,0) -- (0.3,0) -- (0.2,0.2) -- (0.3,0.4) -- (0.1,0.4) -- cycle;}
+
+% include the right arrow into a tikz picture
+% param1: fill color
+\newcommand{\rarrow}
+{\begin{tikzpicture}[scale=0.7]
+	\filldraw[fill=sectcol!100,draw=sectcol!100!black] \tzrarrow
+ \end{tikzpicture}
+}
+
+%------------------------------------------------------------------------
+%	custom sections
+%------------------------------------------------------------------------
+
+% create a coloured box with arrow and title as cv section headline
+% param 1: section title
+\newcommand{\cvsection}[1]
+{
+\colorbox{sectcol}{\mystrut \makebox[1\mpwidth][l]{
+\larrow{bgcol} \hspace{-8pt} \larrow{bgcol} \hspace{-8pt} \larrow{bgcol} \textbf{\textcolor{white}{\uppercase{#1}}}\hspace{4pt}
+}}\\
+}
+
+% create a coloured arrow with title as cv meta section section
+% param 1: meta section title
+\newenvironment{metasection}[1] {
+	\vspace{6pt}
+	\begin{center}
+		\textcolor{white}{\large{\uppercase{#1}}}\\
+	\normalsize
+	\parbox{0.7\mpwidth}{\textcolor{white}	\hrule}
+}{\end{center}}
+
+%------------------------------------------------------------------------
+%	 CV EVENT
+%------------------------------------------------------------------------
+
+% creates a stretched box as cv entry headline followed by some paragraphs about 
+% the work you did
+% param 1:	event time i.e. 2014 or 2011-2014 etc.
+% param 2:	event name (what did you do?)
+% param 3:	institution (where did you work / study)
+% param 4:	list of paragraphs outlining your contributions, see example usage below
+\newcommand{\cvevent}[4]
+{
+\vspace{6pt}
+	\begin{tabular*}{1\mpwidth}{p{0.53\mpwidth}  x{0.44\mpwidth}}
+ 	\textcolor{black}{\textbf{#2}} & \textcolor{complcol}{#3}, \textcolor{bgcol}{#1} 
+	\end{tabular*}
+\vspace{0pt}
+\textcolor{softcol}{\hrule}
+\vspace{6pt}
+	\cvlist {#4}
+\vspace{-6pt}
+}
+
+% Same as \cvevent, but without the institution field and more compact
+\newcommand{\cvline}[2]
+{
+\vspace{4pt}
+	\begin{tabular*}{1\mpwidth}{p{0.8\mpwidth} x{0.18\mpwidth}}
+ 	\textcolor{black}{\cvlist {#2}} & \textcolor{bgcol}{	#1} 
+	\end{tabular*}
+\vspace{0pt}
+\textcolor{softcol}{\hrule}
+}
+
+% formats a list of strings with variable length for use in `\cvevent`
+% param 1: a list of strings outlining your contributions
+\newcommand{\cvlist}[1] {
+    \foreach \listitem in {#1}
+    {
+        \begin{tabular*}
+            {1\mpwidth}{p{1\mpwidth}}
+            \parbox{1\mpwidth}{\larrow{softcol} \listitem}
+            \vspace{3pt}
+        \end{tabular*}
+    }
+}
+
+% creates a stretched box as 
+\newcommand{\cveventmeta}[2]
+{
+	\mbox{\mystrut \hspace{87pt}\textit{#1}}\\
+	#2
+}
+
+%------------------------------------------------------------------------
+% CUSTOM STRUT FOR EMPTY BOXES
+%----------------------------------------- ------------------------------
+\newcommand{\mystrut}{\rule[-.3\baselineskip]{0pt}{\baselineskip}}
+
+% use to vertically center content
+% credits to: http://tex.stackexchange.com/questions/7219/how-to-vertically-center-two-images-next-to-each-other
+\newcommand{\vcenteredinclude}[1]{\begingroup
+\setbox0=\hbox{\includegraphics{#1}}%
+\parbox{\wd0}{\box0}\endgroup}
+
+% use to vertically center content
+% credits to: http://tex.stackexchange.com/questions/7219/how-to-vertically-center-two-images-next-to-each-other
+\newcommand*{\vcenteredhbox}[1]{\begingroup
+\setbox0=\hbox{#1}\parbox{\wd0}{\box0}\endgroup}
+
+%------------------------------------------------------------------------
+%	ICON-SET EMBEDDING
+%------------------------------------------------------------------------
+
+% at this point we simplify our icon-embedding by simply referring to a set of png images.
+% if you find a good way of including svg without conflicting with other packages you can
+% replace this part
+\newcommand{\icon}[3]{\makebox(#2, #2){\textcolor{#3}{\csname fa#1\endcsname}}}	%icon shortcut
+\newcommand{\icontext}[4]{ 						%icon with text shortcut
+	\vcenteredhbox{\icon{#1}{#2}{#4}} \vcenteredhbox{\textcolor{#4}{#3}}
+}
+\newcommand{\iconhref}[5]{ 						%icon with website url
+    \vcenteredhbox{\icon{#1}{#2}{#5}} \href{#4}{\textcolor{#5}{#3}}
+}
+
+\newcommand{\iconemail}[5]{ 						%icon with email link
+    \vcenteredhbox{\icon{#1}{#2}{#5}} \href{mailto:#4}{\textcolor{#5}{#3}}
+}
+
+\newcommand{\customicon}[3]{
+    \newcommand{\tempcmd}{\includegraphics*[width=#2pt, height=#2pt]{#1}} % Create a command
+   \makebox(#2, #2){\textcolor{#3}{\tempcmd}}  % Use the command
+}   
+
+\newcommand{\customicontext}[4]{ 
+   \vcenteredhbox{\customicon{#1}{#2}{#4}} \vcenteredhbox{\textcolor{#4}{#3}}
+}
+
+%=======================================================================%
+%
+%	DOCUMENT CONTENT
+%
+%=======================================================================%
+\begin{document}
+
+%=======================================================================%
+%
+%	PAGE 1
+%
+%=======================================================================%
+\fcolorbox{white}{white}{\begin{minipage}[c][0.95\textheight][t]{0.77\linewidth}
+
+%=======================================================================%
+%	HEADER
+%=======================================================================%
+\input{sections/header}
+\vspace{20pt}
+
+%=======================================================================%
+%	CV SECTIONS AND EVENTS (MAIN CONTENT)
+%=======================================================================%
+\input{sections/education}
+\vspace{12pt}
+
+\input{sections/experience}
+\vspace{12pt}
+
+% \textcolor{softcol}{\hrule}
+
+\end{minipage}}% DO NOT LEAVE A BLANK LINE HERE!
+%=======================================================================%
+%	METADATA
+%=======================================================================%
+\fcolorbox{white}{sectcol}{\begin{minipage}[c][0.95\textheight][t]{0.20\linewidth}
+    \input{sections/metadata}
+\end{minipage}}
+
+%------------------------------------------------------------------------
+% FOOTER (footer cannot exceed linewidth) 
+%------------------------------------------------------------------------
+
+\null
+\vspace*{\fill}
+\hspace{-0.25\linewidth}\colorbox{bgcol}{\makebox[1.5\linewidth][c]{\mystrut \small \textcolor{white}{Francesco Ioli - \today}}}\\[-6pt]
+
+%=======================================================================%
+%
+%	PAGE 2
+%
+%=======================================================================%
+\newpage
+
+\input{sections/pubblications} \vspace{12pt}
+
+\input{sections/presentations} \vspace{12pt}
+
+\input{sections/contribution} \vspace{12pt}
+
+\input{sections/grants} \vspace{12pt}
+
+\input{sections/supervision} \vspace{12pt}
+
+\input{sections/additional_info} \vspace{12pt}
+
+
+%------------------------------------------------------------------------
+% FOOTER (footer cannot exceed linewidth) 
+%------------------------------------------------------------------------
+
+% \null
+% \vspace*{\fill}
+% \hspace{-0.25\linewidth}\colorbox{bgcol}{\makebox[1.5\linewidth][c]{\mystrut \small \textcolor{white}{Francesco Ioli - \today}}}\\[-6pt]
+
+%=======================================================================%
+%
+%	PAGE 2
+%
+%=======================================================================%
+% \newpage
+
+
+
+%------------------------------------------------------------------------
+% Closing
+%------------------------------------------------------------------------
+\null
+\vspace*{\fill}
+\begin{center}
+    \textit{\small According to Regulation of the European Parliament 679/2016, I hereby express my consent to process and use my data in this CV and application for recruiting purposes.}
+\end{center}
+
+%------------------------------------------------------------------------
+% FOOTER (footer cannot exceed linewidth) 
+%------------------------------------------------------------------------
+\null
+\hspace{-0.25\linewidth}\colorbox{bgcol}{\makebox[1.5\linewidth][c]{\mystrut \small \textcolor{white}{Francesco Ioli - \today}}}\\[-6pt]
+
+%=======================================================================%
+%
+%	DOCUMENT END
+%
+%=======================================================================%
+\end{document}
