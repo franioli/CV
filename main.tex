@@ -155,7 +155,7 @@
 {
 \colorbox{sectcol}{\mystrut \makebox[1\mpwidth][l]{
 \larrow{bgcol} \hspace{-8pt} \larrow{bgcol} \hspace{-8pt} \larrow{bgcol} \textbf{\textcolor{white}{\uppercase{#1}}}\hspace{4pt}
-}}\\
+}}
 }
 
 % create a coloured arrow with title as cv meta section section
@@ -180,15 +180,15 @@
 % param 4:	list of paragraphs outlining your contributions, see example usage below
 \newcommand{\cvevent}[4]
 {
-\vspace{6pt}
-	\begin{tabular*}{1\mpwidth}{p{0.53\mpwidth}  x{0.44\mpwidth}}
+\vspace{0pt}
+	\begin{tabular*}{1\mpwidth}{p{0.40\mpwidth}  x{0.58\mpwidth}}
  	\textcolor{black}{\textbf{#2}} & \textcolor{complcol}{#3}, \textcolor{bgcol}{#1} 
 	\end{tabular*}
 \vspace{0pt}
 \textcolor{softcol}{\hrule}
-\vspace{6pt}
+\vspace{4pt}
 	\cvlist {#4}
-\vspace{-6pt}
+\vspace{4pt}
 }
 
 % Same as \cvevent, but without the institution field and more compact
@@ -289,15 +289,13 @@
 %=======================================================================%
 %	CV SECTIONS AND EVENTS (MAIN CONTENT)
 %=======================================================================%
-\input{sections/education}
-\vspace{12pt}
+\input{sections/experience} \vspace{12pt}
 
-\input{sections/experience}
-\vspace{12pt}
+\input{sections/education} \vspace{12pt}
 
 % \textcolor{softcol}{\hrule}
 
-\end{minipage}}% DO NOT LEAVE A BLANK LINE HERE!
+\end{minipage}}% DO NOT LEAVE A BLANK LINaE HERE!
 %=======================================================================%
 %	METADATA
 %=======================================================================%
@@ -320,13 +318,15 @@
 %=======================================================================%
 \newpage
 
+\input{sections/education-2} \vspace{12pt}
+
+\input{sections/grants} \vspace{12pt}
+
 \input{sections/pubblications} \vspace{12pt}
 
 \input{sections/presentations} \vspace{12pt}
 
 \input{sections/contribution} \vspace{12pt}
-
-\input{sections/grants} \vspace{12pt}
 
 \input{sections/supervision} \vspace{12pt}
 
