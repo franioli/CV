@@ -1,6 +1,15 @@
 {
-    "latex-workshop.latex.recipe.default": "pdflatex",
+    "latex-workshop.latex.recipe.default": "pdflatex ➞ biber ➞ pdflatex × 2",
     "latex-workshop.latex.recipes": [
+        {
+            "name": "pdflatex ➞ biber ➞ pdflatex × 2",
+            "tools": [
+                "pdflatex",
+                "biber",
+                "pdflatex",
+                "pdflatex"
+            ]
+        },
         {
             "name": "pdflatex",
             "tools": [
@@ -17,6 +26,13 @@
                 "-interaction=nonstopmode",
                 "-file-line-error",
                 "%DOC%"
+            ]
+        },
+        {
+            "name": "biber",
+            "command": "biber",
+            "args": [
+                "%DOCFILE%"
             ]
         }
     ]
