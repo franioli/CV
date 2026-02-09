@@ -1,0 +1,245 @@
+%=======================================================================%
+%
+%	DOCUMENT DEFINITION - EUROPEAN STYLE (CLEAN & SIMPLE)
+%
+%=======================================================================%
+
+\documentclass[10pt,A4]{article}
+
+%------------------------------------------------------------------------
+%	ENCODING & LOGIC
+%------------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage{xifthen}
+
+%------------------------------------------------------------------------
+%	FONT (Keeping Gillius for the 'nice' look)
+%------------------------------------------------------------------------
+\usepackage[default]{gillius}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage[T1]{fontenc}
+\usepackage{moresize}
+\usepackage{fontawesome}
+
+%------------------------------------------------------------------------%	PAGE LAYOUT
+%------------------------------------------------------------------------
+\usepackage[a4paper]{geometry}
+\geometry{top=1.5cm, bottom=1.5cm, left=1.8cm, right=1.8cm}
+\setlength{\parindent}{0mm}
+
+%-----------------------------------------------------------------------
+%	PACKAGES
+%----------------------------------------------------------------------- 
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{shapes, backgrounds}
+\usepackage{transparent}
+\usepackage{color}
+
+% Colors
+\definecolor{complcol}{RGB}{250,150,10}
+\definecolor{bgcol}{RGB}{80,80,80}
+\definecolor{softcol}{RGB}{220,220,220}
+\definecolor{sectcol}{RGB}{0,100,130}
+
+\usepackage[colorlinks, urlcolor=sectcol]{hyperref}
+
+%=======================================================================%
+%	CUSTOM COMMANDS
+%=======================================================================%
+
+\newcommand{\mpwidth}{\linewidth}
+
+% Section style: European clean
+\newcommand{\cvsection}[1]{
+  \vspace{12pt}
+  {\Large\textbf{\textcolor{sectcol}{\uppercase{#1}}}}
+  \vspace{-6pt}
+  \nopagebreak
+  \textcolor{softcol}{\hrule}
+  \vspace{6pt}
+}
+
+% Event style: Single column clean
+\newcommand{\cvevent}[4]{
+  \vspace{4pt}
+  \begin{tabular*}{\linewidth}{@{} p{0.8\linewidth} r @{}}
+    \textbf{#2} & \textcolor{bgcol}{\small #1} \\
+    \textit{#3} & \\
+  \end{tabular*}
+  \ifvoid\empty#4\else
+    \begin{itemize}
+      \renewcommand{\labelitemi}{\textcolor{sectcol}{\tiny$\blacksquare$}}
+      \setlength{\itemsep}{0pt}
+      \setlength{\parskip}{0pt} \setlength{\parsep}{0pt} #4
+    \end{itemize}
+  \fi
+}
+
+% Simple entry style
+\newcommand{\cvitem}[2]{
+  \vspace{2pt}
+  \begin{tabular*}{\linewidth}{@{} p{0.25\linewidth} p{0.75\linewidth} @{}}
+    \textcolor{bgcol}{#1} & #2
+  \end{tabular*}
+}
+
+% Skill dots (optional, but nice)
+\newcommand{\skill}[2]{
+  \textcolor{bgcol}{#1} \hfill
+  \foreach \x in {1,...,5}{%
+      \ifnum\x>#2\relax\textcolor{softcol}{$\bullet$}\else\textcolor{complcol}{$\bullet$}\fi%
+    }
+}
+
+% Icons with text
+\newcommand{\icontext}[2]{\mbox{\textcolor{sectcol}{\csname fa#1\endcsname}\hspace{4pt}#2}}
+
+%=======================================================================%
+%	DOCUMENT START
+%=======================================================================%
+\begin{document}
+
+%-----------------------------------------------------------------------
+%	HEADER
+%-----------------------------------------------------------------------
+\begin{center}
+  {\Huge \textbf{\uppercase{Francesco Ioli}}} \\
+  \vspace{4pt}
+  {\large \textcolor{bgcol}{PhD in Environmental and Infrastructure Engineering | Geoinformatics Specialist}} \\
+  \vspace{10pt}
+
+  \begin{minipage}{0.9\linewidth}
+    \centering
+    \icontext{MapMarker}{Milano, Italy} \hfill
+    \icontext{Envelope}{\href{mailto:francesco.ioli@polimi.it}{francesco.ioli@polimi.it}} \hfill
+    \icontext{Globe}{\href{https://franioli.github.io}{franioli.github.io}} \hfill
+    \icontext{Linkedin}{\href{https://www.linkedin.com/in/francesco-ioli-640061160/}{francesco-ioli}}
+
+    \icontext{Github}{\href{https://github.com/franioli}{github.com/franioli}} \hfill
+    \icontext{GraduationCap}{\href{https://scholar.google.com/citations?user=hZkC2UMAAAAJ}{Google Scholar}} \hfill
+    \icontext{LineChart}{H-Index: 10}
+  \end{minipage}
+\end{center}
+
+\vspace{10pt}
+
+%-----------------------------------------------------------------------
+%	SUMMARY
+%-----------------------------------------------------------------------
+\cvsection{Professional Profile}
+Specialized in photogrammetry and 3D reconstruction in challenging environments, with a focus on alpine glaciers. PhD in Environmental and Infrastructure Engineering (Geoinformatics). Passionate about open-source software, data, and science. Currently focusing on deep learning image matching and UAV-based topographic surveys.
+
+%-----------------------------------------------------------------------
+%	EXPERIENCE
+%-----------------------------------------------------------------------
+\cvsection{Work Experience}
+
+\cvevent{06/2025 - Present}{Post-doctoral Researcher}{CNR IRPI, Institute for Geo-Hydrological Protection}{
+  \item Research on photogrammetric monitoring and geohazard assessment. }
+
+\cvevent{10/2024 - 05/2025}{Post-doctoral Researcher}{University of Zurich, Dept. of Geography (Remote Sensing group)}{
+  \item Developed automated pipelines for large-scale DEM reconstruction using satellite multi-view stereo
+  for geodetic mass balance. }
+
+\cvevent{11/2020 - 07/2024}{PhD Researcher (Cum Laude)}{Politecnico di Milano, DICA (Italy)}{
+  \item PhD Thesis: \textit{Multi-temporal and Multi-scale photogrammetry for Alpine Glacier Monitoring}.
+  \item Developed \textbf{ICEpy4D}, an image-based pipeline for 4D glacier monitoring.
+  \item Contributed to \textbf{Deep-Image-Matching} library for deep learning SfM.
+  \item UAV photogrammetry for structural health assessment and crack detection on concrete bridges. }
+
+\cvevent{04/2022 - 07/2022}{Visiting PhD Student}{University of Twente, ITC (Netherlands)}{
+  \item Deep learning wide-baseline stereo matching workflow for 4D monitoring of alpine glaciers. }
+
+\cvevent{2020 - 2024}{Teaching Assistant}{Politecnico di Milano}{
+  \item \textit{Photogrammetry and UAV surveying} (MSc), \textit{Statistics} (BSc), \textit{GIS} (BSc), \textit{3D modelling for architecture} (BSc).
+}
+
+\cvevent{2021 - 2024}{Tutor in Summer Schools}{Politecnico di Milano}{
+  \item \textit{Design and Execution of Topographic Surveys for Land Monitoring} @ Belvedere Glacier (IT).
+}
+
+\cvevent{2022}{Topographic Consultant}{Prof. Alberto Bianchi / Gini Telecom}{
+  \item Technical consultant for legal disputes and UAV surveys for telecommunication antennas. }
+
+%-----------------------------------------------------------------------
+%	EDUCATION
+%-----------------------------------------------------------------------
+\cvsection{Education}
+
+\cvevent{2017 - 2020}{MSc in Environmental and Land Planning Engineering}{Politecnico di Milano}{
+  \item Major in Land Monitoring and Diagnostics. Grade: 110L/110. }
+
+\cvevent{2019}{Erasmus Exchange Programme}{Aalto University (Helsinki, Finland)}{}
+
+\cvevent{2014 - 2017}{BSc in Environmental and Land Planning Engineering}{Politecnico di Milano}{
+  \item Thesis: Snowpack surveys using UAVs on the Belvedere glacier. Grade: 102/110. }
+
+\cvevent{2022}{Summer School of Alpine Research}{Obergurgl (Austria)}{
+  \item \textit{Close Range Sensing Techniques in Alpine Terrain}.
+}
+
+%-----------------------------------------------------------------------
+%	SKILLS
+%-----------------------------------------------------------------------
+\cvsection{Skills}
+
+\cvitem{Programming}{
+  \textbf{Python} (Expert), \textbf{Matlab} (Advanced), \textbf{C++} (Basic), \textbf{LaTeX}, \textbf{SQL/PostGIS}.
+}
+
+\cvitem{Photogrammetry}{
+  Agisoft Metashape, Photomodeler, CloudCompare, COLMAP, MicMac, OpenMVG, ODM.
+}
+
+\cvitem{Tools}{
+  Pytorch, Docker, Git, QGIS, ESRI ArcGIS, RTKLIB, Leica Infinity.
+}
+
+\cvitem{Languages}{
+  \textbf{Italian} (Mother tongue), \textbf{English} (C1 - IELTS Certificate).
+}
+
+\cvitem{Other}{
+  UAV Pilot License (EASA A2 Open Category & Critical Scenarios), Driver's License (B).
+}
+
+%-----------------------------------------------------------------------
+%	PUBLICATIONS & PROJECTS
+%-----------------------------------------------------------------------
+\cvsection{Selected Publications \& Awards}
+
+\cvevent{2024}{Marie Curie Seal of Excellence}{MSCA Post-doctoral call}{}
+
+\cvevent{2023}{Young Researcher Prize}{Italian Society of Photogrammetry and Remote Sensing (SIFET)}{}
+
+\vspace{4pt}
+\begin{itemize}
+  \renewcommand{\labelitemi}{\textcolor{sectcol}{\tiny$\blacksquare$}}
+  \item \textbf{Ioli, F.} et al. (2024). Deep Learning Low-cost Photogrammetry for 4D Short-term Glacier Dynamics Monitoring. \textit{PFG Journal}.
+  \item \textbf{Ioli, F.} et al. (2022). Mid-Term Monitoring of Glacier’s Variations with UAVs. \textit{Remote Sensing}.
+  \item \textbf{Morelli, L., Ioli, F.} et al. (2024). Deep-Image-Matching: a Toolbox for Multi-view Image Matching. \textit{ISPRS Archives}.
+\end{itemize}
+
+%-----------------------------------------------------------------------
+%	ADDITIONAL INFO
+%-----------------------------------------------------------------------
+\cvsection{Additional Information}
+
+\cvevent{Volunteering}{Diverse Organizations}{2012 - 2024}{
+  \item \textit{Apwoyo} (Homeless support), \textit{AGESCI} (Scout Chief), \textit{Libera} (Anti-mafia association).
+}
+
+\vfill
+
+\begin{center}
+  \footnotesize
+  \textit{According to Regulation of the European Parliament 679/2016, I hereby express my consent to process my data for recruiting purposes.} \\
+  \vspace{4pt}
+  \textcolor{bgcol}{Francesco Ioli --- \today}
+\end{center}
+
+\end{document}
