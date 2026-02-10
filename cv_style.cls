@@ -208,5 +208,6 @@
 %=======================================================================%
 %  BULLET LISTS
 %=======================================================================%
+\RequirePackage{enumitem}
+
 \newcommand{\cvbullet}[1]{\parbox{1\mpwidth}{\larrow{softcol}\ #1}\vspace{3pt} }
-\newcommand{\minibull}{\textcolor{softcol}{\scriptsize\faAngleRight}\hspace{0.6em}}
