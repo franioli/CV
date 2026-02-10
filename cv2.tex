@@ -42,14 +42,20 @@
 \DeclareFieldFormat{doi}{\href{https://doi.org/#1}{\footnotesize\nolinkurl{#1}}}
 
 % Simple formatting to remove bibliography margins to match your layout
+% \defbibenvironment{bibliography}{%
+%     \list{}{%
+%         \setlength{\leftmargin}{0pt}%
+%         \setlength{\itemsep}{2pt}%
+%         \setlength{\parsep}{0pt}}} {\endlist} {%
+%     \item %
+% }
 \defbibenvironment{bibliography}{%
     \list{}{%
-        \setlength{\leftmargin}{0pt}%
-        \setlength{\itemsep}{2pt}%
+        \setlength{\leftmargin}{1.5em}% % indent for bullet
+        \setlength{\itemsep}{3pt}% % small space between entries
         \setlength{\parsep}{0pt}}} {\endlist} {%
-    \item %
+    \item[\textcolor{softcol}{$\bullet$}]%
 }
-
 %------------------------------------------------------------------------
 %   TABLES
 %------------------------------------------------------------------------
@@ -165,11 +171,23 @@
     \vspace{4pt}\textcolor{softcol}{\hrule}\vspace{6pt}
 }
 
+\newcommand{\cventwide}[5]{% 1=dates 2=position 3=employer 4=place 5=description
+    \noindent
+    \begin{tabularx}{\linewidth}{@{}p{0.12\linewidth} X@{}}
+        \textcolor{bgcol}{\footnotesize\textbf{#1}} &
+        {\textbf{#2} \hfill \textcolor{accentcol}{\textbf{#3}} \ifthenelse{\isempty{#4}}{}{, \textcolor{bgcol}{{\footnotesize\faMapMarker*}\ #4}}} \\[2pt] & \small\textcolor{black}{#5}
+    \end{tabularx}
+    \vspace{4pt}\textcolor{softcol}{\hrule}\vspace{6pt}
+}
+
 %=======================================================================%
 %   SIMPLE BULLET
 %=======================================================================%
 \newcommand{\cvbullet}[1]{%
     \parbox{1\mpwidth}{\larrow{softcol}\ #1}\vspace{3pt} }
+
+% Compact bullet for inline lists (good inside tabular/tabularx cells)
+\newcommand{\minibull}{\textcolor{softcol}{\scriptsize\faAngleRight}\hspace{0.6em}} % [web:60]
 
 %=======================================================================%
 %   DOCUMENT
@@ -187,25 +205,42 @@
         }}
 
     \vspace{6pt}
-    \includegraphics[trim=250 150 0 40,clip,width=\linewidth]{assets/header.jpg}
+    \includegraphics[trim=250 150 0 60,clip,width=\linewidth]{assets/header.jpg}
 
-    \transparent{0.75}\vspace{-120pt}\hspace{0.40\linewidth}
+    \transparent{0.75}\vspace{-100pt}\hspace{0.40\linewidth}
     \colorbox{bgcol}{\parbox{0.58\linewidth}{\transparent{1}
             \begin{center}
                 \larrow{sectcol}\larrow{sectcol}
                 \textcolor{white}{
-                    I hold a PhD in Environmental and Infrastructure Engineering, specializing in Geoinformatics. My expertise lies in photogrammetry and 3D reconstruction, particularly in challenging environments such as alpine glaciers. I am proficient in coding and a passionate advocate for open-source software, data, and science. Currently, I am focused on deep learning image matching and am an experienced UAV pilot for photogrammetric and topographic surveys.
+                    \textbf{Geomatics Post-doctoral Researcher} \\
+                    Post-doc at CNR IRPI | PhD in Geoinformatics \\[4pt]
+                    \footnotesize
+                    Deep Learning Photogrammetry $\cdot$ 3D Reconstruction \\
+                    Glacier monitoring $\cdot$ Open Science
                 }
             \end{center}}}
     \transparent{1}
-    \vspace{18pt}
+    \vspace{20pt}
+
+    % ---- Profile -----
+    Post-doctoral researcher at \textbf{CNR IRPI}, specializing in advanced photogrammetry and
+    geoinformatics for environmental monitoring. My research bridges the gap between traditional
+    geomatics and modern computer vision, focusing on \textbf{Deep Learning-based image matching} and
+    automated 3D reconstruction pipelines.
+
+    I possess extensive experience in multi-scale 4D monitoring, ranging from \textbf{low-cost
+        terrestrial sensors} for high-frequency glacier dynamics to \textbf{satellite multi-view stereo}
+    for regional mass balance studies (developed at \textbf{University of Zurich}). A strong advocate
+    for Open Science, I actively develop open-source tools (e.g. Deep-Image-Matching) and manage
+    large-scale geospatial datasets. My background includes rigorous field expertise as a certified UAV
+    pilot and a strong commitment to teaching photogrammetry and statistics.
 
     % ---- Degree -----
     \cvsection{Degree}
 
     \cvent{2021 -- 2024}{PhD Environmental and Infrastructure Engineering}{Politecnico di Milano}{Milan, Italy}{%
         Major in Geoinformatics. \href{https://hdl.handle.net/10589/224092}{PhD Thesis}: \textit{Multi-temporal and Multi-scale photogrammetry for Alpine Glacier Monitoring}. Grade: Cum Laude.\newline
-        I developed an image-based system with low-cost stereo cameras for short-term 4D glacier monitoring. I developed a software pipeline for daily 3D reconstruction with extreme-wide baseline between the stereo cameras using deep learning feature matching. I contributed to Deep-Image-Matching, a multi-view image matching library with deep learning for SfM. Additionally, I applied UAV photogrammetry for structural health assessment, including automated crack detection on concrete bridges, and cultural heritage documentation.
+        I developed an image-based system with low-cost stereo cameras for short-term 4D glacier monitoring. I developed a software pipeline for daily 3D reconstruction with extreme-wide baseline between the stereo cameras using deep learning feature matching. I contributed to \href{https://github.com/3DOM-FBK/deep-image-matching}{Deep-Image-Matching}, a multi-view image matching library with deep learning for SfM. I applied UAV photogrammetry for structural health assessment, including automated crack detection on concrete bridges, and cultural heritage documentation.
         %
     }
 
@@ -227,11 +262,11 @@
         I developed automated pipelines for large-scale DEM reconstruction using satellite multi-view stereo, with applications in glacier mass balance studies.%
     }
 
-    \cvent{2022}{Topographic technical consultant}{Prof. Alberto Bianchi}{}{%
+    \cvent{2022}{Topographic technical consultant (part-time)}{Prof. Alberto Bianchi}{}{%
         Topographic consultant for the Technical Consultant of Office and Part (CTU) R.G. 717/2019%
     }
 
-    \cvent{2022}{Topographic technician}{Gini Telecom}{}{%
+    \cvent{2022}{Topographic technician (part-time)}{Gini Telecom}{}{%
         UAV surveys for telecommunication antennas%
     }
 
@@ -243,7 +278,7 @@
         \href{https://doi.org/10.1007/s41064-023-00272-w}{[Paper]} \href{https://github.com/franioli/icepy4d}{[Code]}
     }
 
-    \cvent{18 - 24/09/2022}{Summer School of Alpine Research}{University of Innsbruck}{Obergurgl (AT)}{%
+    \cvent{18 - 24/\newline09/2022}{Summer School of Alpine Research}{University of Innsbruck}{Obergurgl (AT)}{%
         I participated in the Summer School \textit{Close Range Sensing Techniques in Alpine Terrain} organized by Innsbruck University
         with ISPRS support. \href{https://www.uibk.ac.at/iup/buecher/9783991060819.html}{[Proceedings]}%
     }
@@ -285,9 +320,9 @@
         \begin{metasection}{Personal Details}
             \icontext{MapMarker}{12}{Milan, Italy}{white}\\[4pt]
             \icontext{Male}{12}{03/09/1995}{white}\\[4pt]
-            \iconhref{Orcid}{12}{\small 0000-0002-3184-7622}{https://orcid.org/0000-0002-3184-7622}{white}\\[4pt]
-            \iconhref{Envelope}{12}{\small francesco.ioli@polimi.it}{francesco.ioli@polimi.it}{white}\\[4pt]
-            \iconhref{Globe}{12}{franioli.github.io}{https://franioli.github.io}{white}\\[4pt]
+            \iconhref{Orcid}{12}{\small 0000-0001-7429-891X}{https://orcid.org/0000-0001-7429-891X}{white}\\[4pt]
+            \iconhref{Envelope}{12}{\small francescoioli@cnr.it}{francescoioli@cnr.it}{white}\\[4pt]
+            % \iconhref{Globe}{12}{franioli.github.io}{https://franioli.github.io}{white}\\[4pt]
             \iconhref{Github}{12}{github.com/franioli}{https://github.com/franioli}{white}\\[4pt]
             \iconhref{Linkedin}{12}{francesco-ioli}{https://www.linkedin.com/in/francesco-ioli-640061160/}{white}\\[4pt]
             \iconhref{GraduationCap}{12}{Google Scholar}{https://scholar.google.com/citations?user=hZkC2UMAAAAJ}{white}\\[4pt]
@@ -384,72 +419,90 @@
 % These sections will now use 100% of the page width automatically.
 
 % ---- Research funding, Grants -----
-\cvsection{Research funding, Grants}
+\cvsection{Research funding and Grants}
 
-\cvbullet{Marie Curie Seal of Excellence -- MSCA Postdoctoral Fellowship 2024}
-
-\cvbullet{Open Data Day 2024 Mini-Grant (Open Knowledge Foundation)}
-
-\cvbullet{Best Paper Award -- ISPRS Geospatial Week 2023 (Youth Forum)}
+\cvbullet{......MENTION TO CARIPLO PROJECT}
 
 % ----- Publications -----  
 \cvsection{Research Outputs}
 
+\vspace{-6pt}
 \begin{itemize}
-    \item \textbf{Total number of publications:} xxxx (Source: Google Scholar / Scopus).
-    \item \textbf{Metrics:} H-index: 12, Total Citations: xxxxx+ (as of Feb 2026).
-    \item \textbf{Open Science:} 100\% of recent research outputs (2022--2025) are available via Open Access (DOI links provided below).
+    \setlength{\itemsep}{0pt}
+    \setlength{\parskip}{0pt}
+    \item \textbf{Total number of publications:} 24 (Source: Scopus).
+    \item \textbf{Metrics:} H-index: 12, Total Citations: 272+ (as of Feb 2026).
+    \item \textbf{Open Science:} 100\% of recent research outputs (2020--2025) are available via Open Access (DOI links provided below).
 \end{itemize}
 
+% --- SELECTED PUBLICATIONS SUB-BLOCK ---
+\textbf{Selected Publications (10 most significant):} \vspace{-4pt}
 \footnotesize
 % List your BibTeX keys here in the exact order you want them shown:
 \nocite{
     gaspari2025glacier,
-    bertulessi2025geomat,
     ioli2024pfg,
     morelli2024coregistering,
     morelli2024toolbox,
     gaspari2024heritage,
-    gaspari2024teaching,
-    morelli2024legacy,
-    ioli2023multi,
     morelli2023slam,
     ioli2022rs,
     ioli2022bridge,
     gaspari2022integration,
-    degaetani2021rs,
+    degaetani2021rs%
 }
-\vspace{-10pt} \printbibliography[heading=none] \vspace{-4pt}
-\textit{For complete publication list, see \href{https://scholar.google.com/citations?user=hZkC2UMAAAAJ}{Google Scholar profile}}
-\normalsize
+\printbibliography[heading=none] \vspace{-4pt} \textit{For complete publication
+    list, see \href{https://www.scopus.com/authid/detail.uri?authorId=57219022961}{Scopus profile: scopus.com/authid/detail.uri?authorId=57219022961}}
+\normalsize%
+
+% --- SOFTWARE, DATASETS & OTHER CONTRIBUTIONS ---
+\vspace{4pt}
+\textbf{Software, Datasets \& Infrastructure:} \vspace{-4pt}
+
+\begin{itemize}
+    \setlength{\itemsep}{2pt}
+    \setlength{\parskip}{0pt}
+    \item \textbf{Deep-Image-Matching} (Core Contributor): Toolbox for multi-view image matching with traditional and deep learning algorithms. \href{https://github.com/3DOM-FBK/deep-image-matching}{[GitHub]} \href{https://doi.org/10.5194/isprs-archives-XLVIII-2-W4-2024-309-2024}{[Paper]}
+
+    \item \textbf{ICEpy4D} (Lead Developer): Open-source Python toolkit for 4D glacier monitoring using Deep Learning photogrammetry. \href{https://github.com/franioli/icepy4d}{[GitHub]} \href{https://doi.org/10.5194/isprs-archives-XLVIII-1-W2-2023-1037-2023}{[Paper]}
+
+    \item \textbf{Belvedere Glacier Open Data \& Web-GIS Platform}: Curated dataset (Zenodo DOI: \href{https://doi.org/10.5281/zenodo.10817029}{10.5281/zenodo.10817029}) and interactive web platform for glacier documentation and storytelling. \href{https://thebelvedereglacier.it/}{[Web-app]}
+
+    \item \textbf{Satellite Multi-View Stereo Pipeline}: Automated HPC workflow (Slurm) for regional-scale DEM reconstruction from satellite imagery, with applications in glacier mass balance (University of Zurich \& CNR IRPI).
+
+    \item \textbf{COLMAP-SLAM Framework} (Core contributor): Visual odometry system for real-time photogrammetric positioning. \href{https://github.com/3DOM-FBK/COLMAP_SLAM}{[GitHub]} \href{https://doi.org/10.5194/isprs-archives-XLVIII-1-W1-2023-317-202}{[Paper]}
+\end{itemize}
+
+\vspace{4pt}
+\textbf{PhD Thesis:} \vspace{-4pt}
+\begin{itemize}
+    \setlength{\itemsep}{2pt}
+    \setlength{\parskip}{0pt}
+    \item \textbf{PhD Thesis} (2024): \textit{Multi-temporal and Multi-scale photogrammetry for Alpine Glacier Monitoring}. Politecnico di Milano. Grade: Cum Laude. \href{https://hdl.handle.net/10589/224092}{[Handle]}
+\end{itemize}
 
 % ----- Research supervision and leadership experience -----  
 \cvsection{Research supervision and leadership experience}
 
-\cvent{2024 -- present}{PhD Co-supervisor}{University of Zurich \& CNR IRPI}{}{%
+\cventwide{2024 -- present}{PhD Co-supervisor}{University of Zurich \& CNR IRPI}{}{%
     Co-supervision of PhD candidates ..... %
 }
 
-\cvent{2019 -- 2024}{MSc Thesis Co-supervisor}{Politecnico di Milano}{Milan, Italy}{%
-    Supervised 6 Master's theses in Environmental Engineering:\newline
-    {\footnotesize
-        L. Cerina (2024): Satellite Stereo Images for Alpine Glacier Monitoring\newline
-        S. Bonora (2024): Georeferenced Database for Belvedere Glacier\newline
-        I. Pincolini (2022): DIC for Ice Flow Velocity Estimation\newline
-        F. Barbieri (2021): Low-Cost UAV Photogrammetry for Alpine Areas\newline
-        A. Pinto (2021): UAV Reconstruction of Bridge Fissures\newline
-        F. Ferrario (2020): DGPS Assisted Aerial Triangulation for UAVs
-    }
+\cventwide{2019 -- 2024}{MSc Thesis Co-supervisor}{Politecnico di Milano}{Milan, Italy}{%
+    Supervised 6 Master's theses in Environmental and Land Planning Engineering:\newline
+    \minibull L. Cerina (2024): Very-High Resolution Satellite Stereo Images for Alpine
+    Glacier Monitoring. Supervisor: prof.\ L. Pinto.\newline
+    \minibull S. Bonora (2024): Progettazione e implementazione di un database georeferenziato per il monitoraggio del Ghiacciaio del Belvedere. Supervisor: prof.\ F. Migliaccio.\newline
+    \minibull I. Pincolini (2022): Digital Image Correlation for ice flow velocity estimation: a case study on the Belvedere Glacier with UAV orthophotos. Supervisor: prof.\ L. Pinto.\newline
+    \minibull F. Barbieri (2021): Monitoraggio di aree alpine inaccessibili con fotogrammetria UAV low-cost. Supervisor: prof.\ L. Pinto.\newline
+    \minibull A. Pinto (2021): Tecniche fotogrammetriche da drone per la ricostruzione metrica di fessure su ponti in calcestruzzo. Supervisor: prof.\ L. Pinto.\newline
+    \minibull F. Ferrario (2020): Triangolazione aerea assistita da DGPS in fotogrammetria da UAV: sperimentazione di una soluzione a basso costo per il DJI Matrice 210 V2. Supervisor: prof.\ L. Pinto.\newline
 }
 
 % ----- Teaching merits -----  
 \cvsection{Teaching merits}
 
-\cvent{2021 -- 2025}{Tutor in Summer Schools}{Politecnico di Milano}{Belvedere Glacier, Macugnaga, Italy}{%
-    \textit{Design and Execution of Topographic Surveys for Land Monitoring} @ Belvedere Glacier aimed at introducing BSc and MSc students to topographic fieldwork in mountain environments. %
-}
-
-\cvent{2020 -- 2024}{Teaching Assistant}{Politecnico di Milano}{Milan, Italy}{%
+\cventwide{2020 -- 2024}{Teaching Assistant}{Politecnico di Milano}{Milan, Italy}{%
     Provided academic support and laboratory tutoring for MSc and BSc courses: \newline
     {\footnotesize
         Photogrammetry and UAV surveying (MSc): Fall 2024\newline
@@ -459,13 +512,59 @@
     }
 }
 
+\cventwide{2021 -- 2025}{Tutor in Summer Schools}{Politecnico di Milano}{Belvedere Glacier, Macugnaga, Italy}{%
+    \textit{Design and Execution of Topographic Surveys for Land Monitoring} @ Belvedere Glacier aimed at introducing BSc and MSc students to topographic fieldwork in mountain environments. %
+}
+
+\cventwide{2024}{Open Data Day 2024}{Open Knowledge Foundation}{}{%
+    Awarded for the \href{https://blog.okfn.org/2024/02/28/and-the-winners-of-the-open-data-day-2024-mini-grants-are/}{ Open Data Day 2024 mini-grant} for the organization of the webinar \href{https://labmgf.dica.polimi.it/opendataday/}{\textit{Mapping Climate Change in 4D: Belvedere Glacier’s Open Geo Data for Education and Research}} \href{https://blog.okfn.org/2024/03/28/oddstories-2024-milan-italy/}{[Event Report]}
+}
+
+\cventwide{2023}{EGU Higher Education Teaching Grant 2023}{EGU}{}{%
+    Winner of the \href{https://www.egu.eu/education/teg/hetg/2023/}{EGU Higher Education Teaching Grant 2023} for the open teaching material for the Summer School "Design and implementation of topographic surveys for territorial monitoring in mountain environments" \href{https://tars4815.github.io/belvedere-summer-school/}{[Teaching material]}
+}
+
 % ---- Awards and honours -----
 \cvsection{Awards and honours}
+
+\cvbullet{Marie Curie Seal of Excellence -- MSCA Postdoctoral Fellowship 2024 (score: 92.8) and 2025 (score: 95.4)}
 
 \cvbullet{Winner of the prize for young researchers \textit{Premio Giovani 2023 – Sezione Ricerca} organized by the Italian Society of Photogrammetry and Topography SIFET during the congress \textit{65° Convegno Nazionale SIFET}, with the contribution \textit{Monitoraggio 4D ad alta frequenza di ghiacciai alpini tramite camere time-lapse a basso costo e Deep Learning Structure-from-Motion}.
 }
 
 \cvbullet{Finalist in the \href{https://blogs.egu.eu/geolog/2024/04/08/egu24-photo-competition-finalists-who-will-you-vote-for/}{EGU2024 Photo Competition}}
+
+\cvsection{Other Key Academic Merits}
+
+\cvsection{Other Key Academic Merits}
+
+% --- Conference Presentations ---
+\vspace{4pt}
+\textbf{\footnotesize Presentations in Scientific Conferences}
+\small
+\begin{itemize}
+    \setlength{\itemsep}{1pt}
+    \setlength{\parskip}{0pt}
+
+    \item \textbf{2025:} EGU General Assembly, Vienna (Oral) \href{https://meetingorganizer.copernicus.org/EGU25/EGU25-15978.html}{[Abstract]}; Alpine Glaciology Meeting, Innsbruck (Poster).
+
+    \item \textbf{2024:} EGU General Assembly, Vienna (Oral) \href{https://meetingorganizer.copernicus.org/EGU24/EGU24-16412.html}{[Abstract]}.
+
+    \item \textbf{2023:} ISPRS Geospatial Week, Cairo (Oral); EGU General Assembly, Vienna (Oral); VGC, Dresden (Oral); SIFET Congress, Arezzo (Oral); GeoAI, Turin (Oral).
+
+    \item \textbf{2022:} EGU General Assembly, Vienna (Oral); ISPRS Congress, Nice (Poster).
+\end{itemize}
+
+% --- Peer Review / Memberships (If you have them) ---
+\vspace{6pt}
+\textbf{\footnotesize Memberships \& Peer Review}
+\begin{itemize}
+    \item Reviewer for: \textit{ISPRS Journal of Photogrammetry and Remote Sensing}, \textit{Remote Sensing},
+          \textit{The Cryosphere}.
+    \item Member of: EGU (European Geosciences Union), SIFET (Italian Society of Photogrammetry and
+          Topography).
+\end{itemize}
+\normalsize
 
 % ----- Additional information -----
 % \cvsection{Additional information}
