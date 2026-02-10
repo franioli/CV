@@ -1,0 +1,487 @@
+%=======================================================================%
+%   DOCUMENT DEFINITION
+%=======================================================================%
+\documentclass[10pt,a4paper]{article}
+
+%------------------------------------------------------------------------
+%   ENCODING + FONT
+%------------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[default]{gillius}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage{moresize}
+\usepackage{fontawesome5}
+
+%------------------------------------------------------------------------
+%   LOGIC
+%------------------------------------------------------------------------
+\usepackage{xifthen}
+
+%------------------------------------------------------------------------
+%   PAGE LAYOUT
+%------------------------------------------------------------------------
+\usepackage[a4paper]{geometry}
+\geometry{top=1cm,bottom=1.2cm,left=1.25cm,right=1.25cm}
+\setlength{\parindent}{0pt} \pagestyle{empty}
+
+%------------------------------------------------------------------------
+%   BIBLIOGRAPHY MANAGEMENT
+%------------------------------------------------------------------------
+\usepackage[
+    backend=biber,
+    style=authoryear,
+    sorting=none, % manual order
+    maxbibnames=99,
+    doi=true,
+    url=false
+]{biblatex}
+\addbibresource{publications.bib}
+
+% Custom DOI format: No "DOI:" text, just a small clickable link
+\DeclareFieldFormat{doi}{\href{https://doi.org/#1}{\footnotesize\nolinkurl{#1}}}
+
+% Simple formatting to remove bibliography margins to match your layout
+\defbibenvironment{bibliography}{%
+    \list{}{%
+        \setlength{\leftmargin}{0pt}%
+        \setlength{\itemsep}{2pt}%
+        \setlength{\parsep}{0pt}}} {\endlist} {%
+    \item %
+}
+
+%------------------------------------------------------------------------
+%   TABLES
+%------------------------------------------------------------------------
+\usepackage{array}
+\usepackage{tabularx}
+% Define a ragged-right fixed width column for dates to allow wrapping
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+
+%------------------------------------------------------------------------
+%   GRAPHICS
+%------------------------------------------------------------------------
+\usepackage{graphicx}
+\usepackage{transparent}
+\usepackage{tikz}
+\usetikzlibrary{shapes,backgrounds,mindmap,trees}
+
+%------------------------------------------------------------------------
+%   COLOR PALETTE (Blue Theme)
+%------------------------------------------------------------------------
+\usepackage{xcolor}
+% Main blue (sidebar background, section headers)
+\definecolor{sectcol}{RGB}{25,90,140}
+% Accent blue (employer names, highlights)
+\definecolor{accentcol}{RGB}{65,140,200}
+% Light accent (stars, secondary highlights)
+\definecolor{lightaccent}{RGB}{100,180,230}
+% Dark gray (header, dates, secondary text)
+\definecolor{bgcol}{RGB}{70,70,70}
+% Light gray (divider lines)
+\definecolor{softcol}{RGB}{220,220,220}
+
+%------------------------------------------------------------------------
+%   LINKS
+%------------------------------------------------------------------------
+\usepackage[colorlinks,urlcolor=accentcol]{hyperref}
+
+%------------------------------------------------------------------------
+%   FLEXIBLE 2-COLUMN LAYOUT
+%------------------------------------------------------------------------
+\usepackage{paracol}
+\setlength{\columnsep}{8pt} % Slightly increased gap between main cols
+\columnratio{0.75}
+
+%------------------------------------------------------------------------
+%   BREAKABLE COLORED SIDEBAR BOX
+%------------------------------------------------------------------------
+\usepackage[most]{tcolorbox}
+
+%=======================================================================%
+%   DEFINITIONS
+%=======================================================================%
+\newcommand{\mpwidth}{\linewidth-\fboxsep-\fboxsep}
+\newcommand{\mystrut}{\rule[-.3\baselineskip]{0pt}{\baselineskip}}
+
+% -- Arrows
+\newcommand{\tzlarrow}{(0,0) -- (0.2,0) -- (0.3,0.2) -- (0.2,0.4) -- (0,0.4) -- (0.1,0.2) -- cycle;}
+\newcommand{\larrow}[1]{\begin{tikzpicture}[scale=0.58]\filldraw[fill=#1,draw=#1!100!black] \tzlarrow\end{tikzpicture}}
+
+% -- Section header
+\newcommand{\cvsection}[1]{%
+    \vspace{4pt}%
+    \colorbox{sectcol}{\mystrut\makebox[1\mpwidth][l]{%
+            \hspace{2pt}\larrow{bgcol}\hspace{-6pt}\larrow{bgcol}\hspace{-6pt}\larrow{bgcol}\hspace{6pt}%
+            \textbf{\textcolor{white}{\uppercase{#1}}}%
+        }}%
+    \vspace{4pt}%
+}
+
+% -- Sidebar section title
+\newenvironment{metasection}[1]{%
+    \vspace{4pt}%
+    \begin{center}%
+        \textcolor{white}{\large{\uppercase{#1}}}\\
+        \normalsize
+        \parbox{0.7\mpwidth}{\textcolor{white}\hrule}
+        \par\vspace{2pt} % <--- This forces a new line and adds a small gap
+        }{%
+    \end{center}%
+}
+
+% -- Icon helpers
+\newcommand{\vcenteredhbox}[1]{\begingroup\setbox0=\hbox{#1}\parbox{\wd0}{\box0}\endgroup}
+
+\newcommand{\icon}[3]{\makebox(#2,#2){\textcolor{#3}{\csname fa#1\endcsname}}}
+
+\newcommand{\icontext}[4]{\vcenteredhbox{\icon{#1}{#2}{#4}}\
+    \vcenteredhbox{\textcolor{#4}{#3}}}
+
+\newcommand{\iconhref}[5]{\vcenteredhbox{\icon{#1}{#2}{#5}}\
+    \href{#4}{\textcolor{#5}{#3}}}
+
+\newcommand{\iconemail}[5]{\vcenteredhbox{\icon{#1}{#2}{#5}}\
+    \href{mailto:#4}{\textcolor{#5}{#3}}}
+
+% Custom icon command
+\newcommand{\customicon}[2]{%
+    \includegraphics[width=#2pt,height=#2pt]{#1}%
+}
+\newcommand{\customicontext}[4]{%
+    \vcenteredhbox{\customicon{#1}{#2}}\ \vcenteredhbox{\textcolor{#4}{#3}}%
+}
+
+%=======================================================================%
+%   EU-STYLE MAINENTRY
+%=======================================================================%
+\newcommand{\cvent}[5]{% 1=dates 2=position 3=employer 4=place 5=description
+    \begin{tabularx}{1\mpwidth}{@{}L{0.13\mpwidth}@{\hspace{2ex}}X@{}}
+        \textcolor{bgcol}{\footnotesize\textbf{#1}} &
+        \textbf{#2} \vspace{1pt} \newline
+        \textcolor{accentcol}{\textbf{#3}}\ifthenelse{\isempty{#4}}{}{, \textcolor{bgcol}{{\footnotesize\faMapMarker*}\ #4}} \vspace{1pt} \newline
+        \small\textcolor{black}{#5}
+    \end{tabularx}
+    \vspace{4pt}\textcolor{softcol}{\hrule}\vspace{6pt}
+}
+
+%=======================================================================%
+%   SIMPLE BULLET
+%=======================================================================%
+\newcommand{\cvbullet}[1]{%
+    \parbox{1\mpwidth}{\larrow{softcol}\ #1}\vspace{3pt} }
+
+%=======================================================================%
+%   DOCUMENT
+%=======================================================================%
+\begin{document}
+
+\begin{paracol}{2}
+
+    %========================
+    % MAIN COLUMN (left)
+    %========================
+    \colorbox{bgcol}{\makebox[\mpwidth][c]{%
+            \HUGE{\textcolor{white}{\uppercase{Francesco Ioli}}}\ \textcolor{sectcol}{\rule[-1mm]{1mm}{0.9cm}}\ %
+            \HUGE{\textcolor{white}{\uppercase{CV}}}%
+        }}
+
+    \vspace{6pt}
+    \includegraphics[trim=250 150 0 40,clip,width=\linewidth]{assets/header.jpg}
+
+    \transparent{0.75}\vspace{-120pt}\hspace{0.40\linewidth}
+    \colorbox{bgcol}{\parbox{0.58\linewidth}{\transparent{1}
+            \begin{center}
+                \larrow{sectcol}\larrow{sectcol}
+                \textcolor{white}{
+                    I hold a PhD in Environmental and Infrastructure Engineering, specializing in Geoinformatics. My expertise lies in photogrammetry and 3D reconstruction, particularly in challenging environments such as alpine glaciers. I am proficient in coding and a passionate advocate for open-source software, data, and science. Currently, I am focused on deep learning image matching and am an experienced UAV pilot for photogrammetric and topographic surveys.
+                }
+            \end{center}}}
+    \transparent{1}
+    \vspace{18pt}
+
+    % ---- Degree -----
+    \cvsection{Degree}
+
+    \cvent{2021 -- 2024}{PhD Environmental and Infrastructure Engineering}{Politecnico di Milano}{Milan, Italy}{%
+        Major in Geoinformatics. \href{https://hdl.handle.net/10589/224092}{PhD Thesis}: \textit{Multi-temporal and Multi-scale photogrammetry for Alpine Glacier Monitoring}. Grade: Cum Laude.\newline
+        I developed an image-based system with low-cost stereo cameras for short-term 4D glacier monitoring. I developed a software pipeline for daily 3D reconstruction with extreme-wide baseline between the stereo cameras using deep learning feature matching. I contributed to Deep-Image-Matching, a multi-view image matching library with deep learning for SfM. Additionally, I applied UAV photogrammetry for structural health assessment, including automated crack detection on concrete bridges, and cultural heritage documentation.
+        %
+    }
+
+    % ----- Work experience -----
+    \cvsection{Current employment}
+
+    \cvent{06/2025 -- present}{Post-doctoral Researcher}{CNR IRPI}{Turin, Italy}{%
+        Research on photogrammetry and 3D reconstruction pipelines for geo-hydrological hazard monitoring. Development of automated processing workflows for UAV and satellite imagery.%
+    }
+
+    \cvsection{Previous work experience}
+
+    \cvent{07/2025 -- 12/2025}{External consultant (20\%) }{University of Zurich, Dept. of Geography}{Zurich, Switzerland}{%
+        I completed the development of automated pipelines for regional-to-global-scale DEM reconstruction using satellite multi-view stereo, with applications in glacier mass balance studies. for Glambie-2 Glacier Mass Balance Intercomparison Exercise submission....Leveraged HPC clusters (Slurm) for large-scale multi-view stereo processing.
+        %
+    }
+
+    \cvent{10/2024 -- 06/2025}{Post-doctoral Researcher}{University of Zurich, Dept. of Geography}{Zurich, Switzerland}{%
+        I developed automated pipelines for large-scale DEM reconstruction using satellite multi-view stereo, with applications in glacier mass balance studies.%
+    }
+
+    \cvent{2022}{Topographic technical consultant}{Prof. Alberto Bianchi}{}{%
+        Topographic consultant for the Technical Consultant of Office and Part (CTU) R.G. 717/2019%
+    }
+
+    \cvent{2022}{Topographic technician}{Gini Telecom}{}{%
+        UAV surveys for telecommunication antennas%
+    }
+
+    % ---- Education and training -----
+    \cvsection{Education and training}
+
+    \cvent{04/2022-07/2022}{Visiting PhD student}{University of Twente, ITC (NL)}{}{%
+        Development of a deep learning wide-baseline stereo matching workflow for 4D monitoring of an alpine glacier with low-cost time-lapse cameras.
+        \href{https://doi.org/10.1007/s41064-023-00272-w}{[Paper]} \href{https://github.com/franioli/icepy4d}{[Code]}
+    }
+
+    \cvent{18 - 24/09/2022}{Summer School of Alpine Research}{University of Innsbruck}{Obergurgl (AT)}{%
+        I participated in the Summer School \textit{Close Range Sensing Techniques in Alpine Terrain} organized by Innsbruck University
+        with ISPRS support. \href{https://www.uibk.ac.at/iup/buecher/9783991060819.html}{[Proceedings]}%
+    }
+
+    \cvent{09/2019 - 02/2020}{Visiting student for MSc Thesis}{ETH Zürich, VAW (CH)}{}{%
+        \textit{Evaluation of Airborne Image Velocimetry approaches with low-cost UAVs in riverine environments}. Supervisors: Prof. Livio Pinto{,} Dr. Martin
+        Detert \href{http://doi.org/10.13140/RG.2.2.36679.65446}{[Thesis]} \href{https://doi.org/10.5194/isprs-archives-XLIII-B2-2020-597-2020}{[Paper]}%
+    }
+
+    \cvent{2020}{Internship}{Politecnico di Milano, Dept. of Civil and Environmental Engineering}{}{%   
+        I learnt how to design and carry out topographic and UAV photogrammetric surveys for infrastructure and land monitoring. I learnt basics of AutoCAD for technical drawing from 3D point clouds. I obtained the A1/A3 and A2 UAV licenses with permission for flying in critical scenarios.
+    }
+    \cvent{2019}{Erasmus Exchange}{Aalto University}{Helsinki, Finland}{%
+        Courses in remote sensing, GIS, and environmental engineering.%
+    }
+
+    \cvent{2017 -- 2020}{MSc Environmental Engineering}{Politecnico di Milano}{Milan, Italy}{%
+        Major in Land Monitoring. Thesis on UAV photogrammetry for glacier monitoring. Grade: 110L/110.%
+    }
+
+    \cvent{2014 -- 2017}{BSc Environmental Engineering}{Politecnico di Milano}{Milan, Italy}{%
+        Thesis on UAV snowpack surveys on Belvedere glacier. Grade: 102/110.%
+    }
+
+    %========================
+    % SIDEBAR COLUMN (right)
+    %========================
+    \switchcolumn
+    \begin{tcolorbox}[
+            enhanced,
+            breakable,
+            colback=sectcol,
+            colframe=sectcol,
+            boxrule=0pt,
+            arc=0pt,
+            left=3mm,right=3mm,top=2mm,bottom=2mm
+        ]
+
+        \begin{metasection}{Personal Details}
+            \icontext{MapMarker}{12}{Milan, Italy}{white}\\[4pt]
+            \icontext{Male}{12}{03/09/1995}{white}\\[4pt]
+            \iconhref{Orcid}{12}{\small 0000-0002-3184-7622}{https://orcid.org/0000-0002-3184-7622}{white}\\[4pt]
+            \iconhref{Envelope}{12}{\small francesco.ioli@polimi.it}{francesco.ioli@polimi.it}{white}\\[4pt]
+            \iconhref{Globe}{12}{franioli.github.io}{https://franioli.github.io}{white}\\[4pt]
+            \iconhref{Github}{12}{github.com/franioli}{https://github.com/franioli}{white}\\[4pt]
+            \iconhref{Linkedin}{12}{francesco-ioli}{https://www.linkedin.com/in/francesco-ioli-640061160/}{white}\\[4pt]
+            \iconhref{GraduationCap}{12}{Google Scholar}{https://scholar.google.com/citations?user=hZkC2UMAAAAJ}{white}\\[4pt]
+            \iconhref{ChartLine}{12}{H-Index: 12}{https://www.scopus.com/authid/detail.uri?authorId=57219022961}{white}\\[4pt]
+        \end{metasection}
+
+        \begin{metasection}{Languages}
+            \textcolor{white}{
+                \icontext{Comment}{10}{Italian}{white} (Native)\\[4pt]
+                \icontext{GlobeAmericas}{10}{English}{white} C1 (IELTS 2019)
+            }
+        \end{metasection}
+
+        \begin{metasection}{Programming}
+            \textcolor{white}{
+                \icontext{Python}{10}{Python}{white}\ \icon{Star}{8}{lightaccent}\icon{Star}{8}{lightaccent}\icon{Star}{8}{lightaccent}\icon{Star}{8}{lightaccent}\\[4pt]
+                \icontext{Microchip}{10}{Matlab}{white}\ \icon{Star}{8}{lightaccent}\icon{Star}{8}{lightaccent}\icon{Star}{8}{lightaccent}\icon{Star}{8}{white}\\[4pt]
+                \icontext{Code}{10}{C++}{white}\ \icon{Star}{8}{lightaccent}\icon{Star}{8}{white}\icon{Star}{8}{white}\icon{Star}{8}{white}\\[4pt]
+                \icontext{Terminal}{10}{Bash/Shell}{white}\ \icon{Star}{8}{lightaccent}\icon{Star}{8}{lightaccent}\icon{Star}{8}{white}\icon{Star}{8}{white}\\[4pt]
+            }
+        \end{metasection}
+
+        \begin{metasection}{Photogrammetry \& LiDAR}
+            \textcolor{white}{
+                \customicontext{assets/metashape}{10}{Agisoft Metashape}{white}\\[2pt]
+                \customicontext{assets/photomodeler}{10}{Photomodeler}{white}\\[2pt]
+                \customicontext{assets/cloudcompare}{10}{CloudCompare}{white}\\[2pt]
+                \customicontext{assets/icon_pcd}{10}{COLMAP MicMac}{white}\\[2pt]
+                \customicontext{assets/logo_odm}{10}{OpenMVG ODM}{white}\\[2pt]
+            }
+        \end{metasection}
+
+        \begin{metasection}{Tools}
+            \textcolor{white}{
+                \customicontext{assets/pytorch}{10}{PyTorch}{white}\\[2pt]
+                \icontext{Database}{10}{PostgreSQL PostGIS}{white}\\[2pt]
+                \customicontext{assets/docker}{10}{Docker}{white}\\[2pt]
+                \icontext{Cogs}{10}{Raspberry Arduino}{white}\\[2pt]
+                \icontext{Github}{10}{Git GitHub}{white}\\[2pt]
+                \icontext{FileCode}{10}{LaTeX}{white}\\[2pt]
+            }
+        \end{metasection}
+
+        \begin{metasection}{Other Software}
+            \textcolor{white}{
+                \icontext{Globe}{10}{QGIS ESRI ArcGIS}{white}\\[2pt]
+                \icontext{Satellite}{10}{RTKLib Leica Infinity}{white}\\[2pt]
+                \icontext{Palette}{10}{Photoshop Lightroom}{white}\\[2pt]
+                \icontext{FileImage}{10}{GIMP Inkscape}{white}\\[2pt]
+                \icontext{DraftingCompass}{10}{AutoCAD}{white}\\[2pt]
+            }
+        \end{metasection}
+
+        \begin{metasection}{Operating Systems}
+            \textcolor{white}{
+                \Large\icon{Linux}{20}{white}\ \Large\icon{Windows}{20}{white}
+            }
+        \end{metasection}
+
+        \begin{metasection}{Infrastructure}
+            \textcolor{white}{
+                \icontext{Server}{10}{HPC}{white}\\[2pt]
+                \footnotesize{Slurm workload manager}\\[6pt]
+                \icontext{Cloud}{10}{Virtualization}{white}\\[2pt]
+                \footnotesize{Proxmox \& OpenStack (client)}
+            }
+        \end{metasection}
+
+        \begin{metasection}{Hobbies}
+            \textcolor{white}{
+                \customicon{assets/mountain}{20}\
+                \icon{Camera}{18}{white}\
+                \icon{Bicycle}{18}{white}
+            }
+        \end{metasection}
+
+        \begin{metasection}{Certifications}
+            \textcolor{white}{
+                \icontext{Check}{10}{Professional Engineer}{white}\\[2pt]
+                \footnotesize{Italian \textit{Esame di Stato} (Civil/Env)}\\[6pt]
+                \icontext{Plane}{10}{UAS Pilot License}{white}\\[2pt]
+                \footnotesize{EASA A2 Open \& Critical Scenario}\\[6pt]
+                \icontext{Car}{10}{Driver's License (B)}{white}
+            }
+        \end{metasection}
+
+    \end{tcolorbox}
+
+\end{paracol}
+
+%=======================================================================%
+%   FULL WIDTH SECTIONS (Below the Sidebar)
+%=======================================================================%
+% These sections will now use 100% of the page width automatically.
+
+% ---- Research funding, Grants -----
+\cvsection{Research funding, Grants}
+
+\cvbullet{Marie Curie Seal of Excellence -- MSCA Postdoctoral Fellowship 2024}
+
+\cvbullet{Open Data Day 2024 Mini-Grant (Open Knowledge Foundation)}
+
+\cvbullet{Best Paper Award -- ISPRS Geospatial Week 2023 (Youth Forum)}
+
+% ----- Publications -----  
+\cvsection{Research Outputs}
+\footnotesize
+% List your BibTeX keys here in the exact order you want them shown:
+\nocite{
+    gaspari2025glacier,
+    bertulessi2025geomat,
+    ioli2024pfg,
+    morelli2024coregistering,
+    morelli2024toolbox,
+    gaspari2024heritage,
+    gaspari2024teaching,
+    morelli2024legacy,
+    ioli2023multi,
+    morelli2023slam,
+    ioli2023icepy4d,
+    ioli2022rs,
+    ioli2022bridge,
+    gaspari2022integration,
+    degaetani2021rs,
+    ioli2020velocimetry
+}
+\vspace{-10pt} \printbibliography[heading=none] \vspace{-4pt}
+\textit{For complete publication list, see \href{https://scholar.google.com/citations?user=hZkC2UMAAAAJ}{Google Scholar profile}}
+\normalsize
+
+% ----- Research supervision and leadership experience -----  
+\cvsection{Research supervision and leadership experience}
+
+\cvent{2024 -- present}{PhD Co-supervisor}{University of Zurich \& CNR IRPI}{}{%
+    Co-supervision of PhD candidates ..... %
+}
+
+\cvent{2021 -- 2025}{Tutor in Summer Schools}{Politecnico di Milano}{Belvedere Glacier, Macugnaga, Italy}{%
+    \textit{Design and Execution of Topographic Surveys for Land Monitoring} @ Belvedere Glacier aimed at introducing BSc and MSc students to topographic fieldwork in mountain environments. %
+}
+
+\cvent{2019 -- 2024}{MSc Thesis Co-supervisor}{Politecnico di Milano}{Milan, Italy}{%
+    Supervised 6 Master's theses in Environmental Engineering:\newline
+    {\footnotesize
+        L. Cerina (2024): Satellite Stereo Images for Alpine Glacier Monitoring\newline
+        S. Bonora (2024): Georeferenced Database for Belvedere Glacier\newline
+        I. Pincolini (2022): DIC for Ice Flow Velocity Estimation\newline
+        F. Barbieri (2021): Low-Cost UAV Photogrammetry for Alpine Areas\newline
+        A. Pinto (2021): UAV Reconstruction of Bridge Fissures\newline
+        F. Ferrario (2020): DGPS Assisted Aerial Triangulation for UAVs
+    }
+}
+
+% ----- Teaching merits -----  
+\cvsection{Teaching merits}
+
+\cvent{2020 -- 2024}{Teaching Assistant}{Politecnico di Milano}{Milan, Italy}{%
+    Provided academic support and laboratory tutoring for MSc and BSc courses: \newline
+    {\footnotesize
+        Photogrammetry and UAV surveying (MSc): Fall 2024\newline
+        \textit{Trattamento delle Osservazioni} (Statistics) (BSc): Fall 2020, 2021, 2022, 2023\newline
+        \textit{Sistemi Informativi Territoriali} (GIS) (BSc): Spring 2020, 2021\newline
+        \textit{Tecniche di rilievo e modellazione 3D per l'architettura} (3D Modelling for Architecture) (BSc): Spring 2020, 2021, 2022.
+    }
+}
+
+% ---- Awards and honours -----
+\cvsection{Awards and honours}
+
+\cvbullet{Winner of the prize for young researchers \textit{Premio Giovani 2023 – Sezione Ricerca} organized by the Italian Society of Photogrammetry and Topography SIFET during the congress \textit{65° Convegno Nazionale SIFET}, with the contribution \textit{Monitoraggio 4D ad alta frequenza di ghiacciai alpini tramite camere time-lapse a basso costo e Deep Learning Structure-from-Motion}.
+}
+
+\cvbullet{Finalist in the \href{https://blogs.egu.eu/geolog/2024/04/08/egu24-photo-competition-finalists-who-will-you-vote-for/}{EGU2024 Photo Competition}}
+
+% ----- Additional information -----
+% \cvsection{Additional information}
+
+% \cvbullet{Languages: Italian (native), English (C1 -- IELTS 2019)}
+% \cvbullet{UAS License: EASA A2 Open Category with Critical Scenario authorization}
+
+% \cvbullet{Driver's license: B}
+
+% \cvbullet{Professional qualification: Italian \textit{Esame di Stato} for civil and environmental engineers}
+
+%=======================================================================%
+%   FOOTER (Date and Consent)
+%=======================================================================%
+\vfill
+\begin{center}
+    \small\textit{According to EU Regulation 679/2016, I consent to the processing of my personal data.} \\
+    \vspace{4pt}
+    \textcolor{bgcol}{\hrulefill} \\
+    \vspace{2pt}
+    \textcolor{bgcol}{\footnotesize Francesco Ioli --- CV updated: \today}
+\end{center}
+
+\end{document}
