@@ -44,9 +44,15 @@
 \geometry{top=1cm,bottom=1.2cm,left=1.25cm,right=1.25cm}
 \setlength{\parindent}{0pt} \pagestyle{empty}
 
+% Define column separation and ratio
+\newlength{\headerstrut}
+\setlength{\headerstrut}{10pt} % Adjust this value if you need more top padding
+
 % Change column ratio: Sidebar (left) is smaller
 \columnratio{0.32} % 32% Left, 68% Right
 \setlength{\columnsep}{16pt} % Adjust column separation
+
+\RequirePackage{graphbox}
 
 %------------------------------------------------------------------------
 %   BIBLIOGRAPHY MANAGEMENT

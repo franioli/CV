@@ -12,17 +12,59 @@
 \begin{paracol}{2}
 
     %========================
+    % LEFT COLUMN (PHOTO)
+    %========================
+
+    % 1. Hard reset + Strut
+    \vspace*{-\topskip} % Cancels default top glue
+    \vspace*{\headerstrut} % Adds fixed space
+
+    % 2. Image
+    % Use clip to trim if needed, but display vertically
+    \includegraphics[width=\linewidth, clip]{assets/P_UZHGEO_FioliFrancesco_250306_0120_WEB.jpg}
+
+    %========================
+    % RIGHT COLUMN (HEADER + PROFILE)
+    %========================
+    \switchcolumn % <--- Switch to Right Column
+
+    % 1. Hard reset + Strut (MUST MATCH EXACTLY)
+    \vspace*{-\topskip}
+    \vspace*{\headerstrut}
+
+    % Name Header
+    {\noindent\color{sectcol}\HUGE\textbf{\uppercase{Francesco Ioli}}} \\[6pt]
+    {\Large\textbf{Geomatics Researcher at CNR IRPI}} \\[4pt]
+    {\large PhD in Geoinformatics} \\[0pt]
+    {\color{bgcol}\rule{\linewidth}{1pt}} % Horizontal divider
+    \vspace{0em} % Space after divider
+
+    % ---- Profile -----
+    Post-doctoral researcher at the \textbf{Research Institute for Geo-Hydrological Protection IRPI} at
+    CNR (Italy), specialising in \textbf{photogrammetry and geoinformatics for environmental
+        monitoring}. My research bridges the gap between traditional photogrammetry and modern computer
+    vision, focusing on deep learning-based image matching and automated 3D reconstruction pipelines.
+
+    I have experience in multi-scale 4D monitoring, ranging from \textbf{low-cost terrestrial sensors}
+    for high-frequency glacier dynamics to \textbf{satellite multi-view stereo} for regional mass
+    balance studies (developed at University of Zurich).
+
+    I have strong coding skills and experience with HPC for processing large-scale geospatial data. As
+    a strong advocate for open science, I actively develop open-source tools. My background includes
+    field expertise as a certified UAV pilot and topographer.
+
+\end{paracol} % Close the 2-column layout here temporarily
+
+\begin{paracol}{2}
+    %========================
     % LEFT COLUMN (SIDEBAR)
     %========================
 
-    % --- 1. Vertical Image ---
-    % Use clip to trim if needed, but display vertically
-    \includegraphics[width=\linewidth, clip]{assets/P_UZHGEO_FioliFrancesco_250306_0120_WEB.jpg}
-    \vspace{-10pt}
+    % Force Reset
+    \vspace*{-\topskip}
+    \vspace*{0pt}
 
-    % --- 2. Contact Details (The "Metasections") ---
-    % You can remove the 'tcolorbox' background if you prefer a clean white look, or keep the colored box for the details below the photo.
-
+    % Sidebar Content
     \begin{tcolorbox}[
             enhanced,
             breakable,
@@ -115,46 +157,26 @@
             }
         \end{metasection}
 
-        \begin{metasection}{Certifications}
-            \textcolor{white}{
-                \icontext{Check}{10}{Professional Engineer}{white}\\[2pt]
-                \footnotesize{Italian \textit{Esame di Stato} (Civil/Env)}\\[6pt]
-                \icontext{Plane}{10}{UAS Pilot License}{white}\\[2pt]
-                \footnotesize{EASA A2 Open \& Critical Scenario}\\[6pt]
-                \icontext{Car}{10}{Driver's License (B)}{white}
-            }
-        \end{metasection}
+        % \begin{metasection}{Certifications}
+        %     \textcolor{white}{
+        %         \icontext{Check}{10}{Professional Engineer}{white}\\[2pt]
+        %         \footnotesize{Italian \textit{Esame di Stato} (Civil/Env)}\\[6pt]
+        %         \icontext{Plane}{10}{UAS Pilot License}{white}\\[2pt]
+        %         \footnotesize{EASA A2 Open \& Critical Scenario}\\[6pt]
+        %         \icontext{Car}{10}{Driver's License (B)}{white}
+        %     }
+        % \end{metasection}
 
     \end{tcolorbox}
+
+    \switchcolumn % Switch to Right column
 
     %========================
     % RIGHT COLUMN (MAIN)
     %========================
-    \switchcolumn % <--- Switch to Right Column
-
-    \vspace*{-10pt} % Pull it up to align with top of photo
-    {\color{sectcol}\HUGE\textbf{\uppercase{Francesco Ioli}}} \\[6pt]
-    {\Large\textbf{Geomatics Researcher at CNR IRPI}} \\[4pt]
-    {\large PhD in Geoinformatics} \\[2pt]
-    {\color{bgcol}\rule{\linewidth}{1pt}} % Horizontal divider
-    \vspace{-4pt}
-
-    % ---- Profile -----
-    Post-doctoral researcher at \textbf{CNR IRPI}, specializing in photogrammetry and geoinformatics
-    for environmental monitoring. My research bridges the gap between traditional photogrammetry and
-    modern computer vision, focusing on \textbf{Deep Learning-based image matching} and automated 3D
-    reconstruction pipelines.
-
-    I have experience in multi-scale 4D monitoring, ranging from \textbf{low-cost terrestrial sensors}
-    for high-frequency glacier dynamics to \textbf{satellite multi-view stereo} for regional mass
-    balance studies (developed at \textbf{University of Zurich}).
-
-    I have strong coding skills and experience with HPC infrastructure for large-scale geospatial data
-    processing. As a strong advocate for open science, I actively develop open-source tools (e.g.
-    Deep-Image-Matching). My background includes field expertise as a certified UAV pilot and
-    topographer.
-
-    \vspace{6pt}
+    % Force Reset
+    \vspace*{-\topskip}
+    \vspace*{1pt}
 
     % ---- Degree -----
     \cvsection{Degree}
@@ -380,14 +402,14 @@
 \normalsize
 
 % ----- Additional information -----
-% \cvsection{Additional information}
+\cvsection{Additional information}
 
 % \cvbullet{Languages: Italian (native), English (C1 -- IELTS 2019)}
-% \cvbullet{UAS License: EASA A2 Open Category with Critical Scenario authorization}
+\cvbullet{UAS License: EASA A2 Open Category with Critical Scenario authorization}
 
-% \cvbullet{Driver's license: B}
+\cvbullet{Driver's license: B}
 
-% \cvbullet{Professional qualification: Italian \textit{Esame di Stato} for civil and environmental engineers}
+\cvbullet{Professional qualification: Italian \textit{Esame di Stato} for civil and environmental engineers}
 
 %=======================================================================%
 %   FOOTER (Date and Consent)
