@@ -197,7 +197,7 @@
 % Usage: \cventwide[noline]{dates}{position}{employer}{place}{description} -> hides line
 \newcommand{\cventwide}[6][line]{% 1=toggle 2=dates 3=position 4=employer 5=place 6=description
     \noindent
-    \begin{tabularx}{\linewidth}{@{}p{0.10\linewidth} X@{}}
+    \begin{tabularx}{\linewidth}{@{}p{0.11\linewidth} X@{}}
         \textcolor{bgcol}{\footnotesize\textbf{#2}} &
         {\textbf{#3} \hfill \textcolor{accentcol}{\textbf{#4}} \ifthenelse{\isempty{#5}}{}{, \textcolor{bgcol}{{\footnotesize\faMapMarker*}\ #5}}} \\[2pt] & \small\textcolor{black}{#6}
     \end{tabularx}
