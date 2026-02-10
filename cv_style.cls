@@ -39,9 +39,14 @@
 %   LOGIC & PAGE LAYOUT
 %------------------------------------------------------------------------
 \RequirePackage{xifthen}
+\RequirePackage{paracol}
 \RequirePackage[a4paper]{geometry}
 \geometry{top=1cm,bottom=1.2cm,left=1.25cm,right=1.25cm}
 \setlength{\parindent}{0pt} \pagestyle{empty}
+
+% Change column ratio: Sidebar (left) is smaller
+\columnratio{0.32} % 32% Left, 68% Right
+\setlength{\columnsep}{16pt} % Adjust column separation
 
 %------------------------------------------------------------------------
 %   BIBLIOGRAPHY MANAGEMENT
@@ -89,9 +94,6 @@
 \usetikzlibrary{shapes,backgrounds,mindmap,trees}
 
 \RequirePackage[colorlinks,urlcolor=accentcol]{hyperref}
-\RequirePackage{paracol}
-\setlength{\columnsep}{8pt}
-\columnratio{0.75}
 \RequirePackage[most]{tcolorbox}
 
 %------------------------------------------------------------------------

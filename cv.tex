@@ -12,116 +12,18 @@
 \begin{paracol}{2}
 
     %========================
-    % MAIN COLUMN (left)
+    % LEFT COLUMN (SIDEBAR)
     %========================
-    \colorbox{bgcol}{\makebox[\mpwidth][c]{%
-            \HUGE{\textcolor{white}{\uppercase{Francesco Ioli}}}\ \textcolor{sectcol}{\rule[-1mm]{1mm}{0.9cm}}\ %
-            \HUGE{\textcolor{white}{\uppercase{CV}}}%
-        }}
 
-    \vspace{6pt}
-    \includegraphics[trim=250 150 0 60,clip,width=\linewidth]{assets/header.jpg}
+    % --- 1. Vertical Image ---
+    % Use clip to trim if needed, but display vertically
+    \includegraphics[width=\linewidth, clip]{assets/P_UZHGEO_FioliFrancesco_250306_0120_WEB.jpg}
+    \vspace{0pt}
 
-    \transparent{0.75}\vspace{-100pt}\hspace{0.40\linewidth}
-    \colorbox{bgcol}{\parbox{0.58\linewidth}{\transparent{1}
-            \begin{center}
-                \larrow{sectcol}\larrow{sectcol}
-                \textcolor{white}{
-                    \textbf{Geomatics Post-doctoral Researcher} \\
-                    Post-doc at CNR IRPI | PhD in Geoinformatics \\[4pt]
-                    \footnotesize
-                    Deep Learning Photogrammetry $\cdot$ 3D Reconstruction \\
-                    Glacier monitoring $\cdot$ Open Science
-                }
-            \end{center}}}
-    \transparent{1}
-    \vspace{20pt}
+    % --- 2. Contact Details (The "Metasections") ---
+    % You can remove the 'tcolorbox' background if you prefer a clean white look,
+    % or keep the colored box for the details below the photo.
 
-    % ---- Profile -----
-    Post-doctoral researcher at \textbf{CNR IRPI}, specializing in advanced photogrammetry and
-    geoinformatics for environmental monitoring. My research bridges the gap between traditional
-    geomatics and modern computer vision, focusing on \textbf{Deep Learning-based image matching} and
-    automated 3D reconstruction pipelines.
-
-    I possess extensive experience in multi-scale 4D monitoring, ranging from \textbf{low-cost
-        terrestrial sensors} for high-frequency glacier dynamics to \textbf{satellite multi-view stereo}
-    for regional mass balance studies (developed at \textbf{University of Zurich}). A strong advocate
-    for Open Science, I actively develop open-source tools (e.g. Deep-Image-Matching) and manage
-    large-scale geospatial datasets. My background includes rigorous field expertise as a certified UAV
-    pilot and a strong commitment to teaching photogrammetry and statistics.
-
-    % ---- Degree -----
-    \cvsection{Degree}
-
-    \cvent{2021 -- 2024}{PhD Environmental and Infrastructure Engineering}{Politecnico di Milano}{Milan, Italy}{%
-        Major in Geoinformatics. \href{https://hdl.handle.net/10589/224092}{PhD Thesis}: \textit{Multi-temporal and Multi-scale photogrammetry for Alpine Glacier Monitoring}. Grade: Cum Laude.\newline
-        I developed an image-based system with low-cost stereo cameras for short-term 4D glacier monitoring. I developed a software pipeline for daily 3D reconstruction with extreme-wide baseline between the stereo cameras using deep learning feature matching. I contributed to \href{https://github.com/3DOM-FBK/deep-image-matching}{Deep-Image-Matching}, a multi-view image matching library with deep learning for SfM. I applied UAV photogrammetry for structural health assessment, including automated crack detection on concrete bridges, and cultural heritage documentation.
-        %
-    }
-
-    % ----- Work experience -----
-    \cvsection{Current employment}
-
-    \cvent{06/2025 -- present}{Post-doctoral Researcher}{CNR IRPI}{Turin, Italy}{%
-        Research on photogrammetry and 3D reconstruction pipelines for geo-hydrological hazard monitoring. Development of automated processing workflows for UAV and satellite imagery.%
-    }
-
-    \cvsection{Previous work experience}
-
-    \cvent{07/2025 -- 12/2025}{External consultant (20\%) }{University of Zurich, Dept. of Geography}{Zurich, Switzerland}{%
-        I completed the development of automated pipelines for regional-to-global-scale DEM reconstruction using satellite multi-view stereo, with applications in glacier mass balance studies. for Glambie-2 Glacier Mass Balance Intercomparison Exercise submission....Leveraged HPC clusters (Slurm) for large-scale multi-view stereo processing.
-        %
-    }
-
-    \cvent{10/2024 -- 06/2025}{Post-doctoral Researcher}{University of Zurich, Dept. of Geography}{Zurich, Switzerland}{%
-        I developed automated pipelines for large-scale DEM reconstruction using satellite multi-view stereo, with applications in glacier mass balance studies.%
-    }
-
-    \cvent{2022}{Topographic technical consultant (part-time)}{Prof. Alberto Bianchi}{}{%
-        Topographic consultant for the Technical Consultant of Office and Part (CTU) R.G. 717/2019%
-    }
-
-    \cvent{2022}{Topographic technician (part-time)}{Gini Telecom}{}{%
-        UAV surveys for telecommunication antennas%
-    }
-
-    % ---- Education and training -----
-    \cvsection{Education and training}
-
-    \cvent{04/2022-07/2022}{Visiting PhD student}{University of Twente, ITC (NL)}{}{%
-        Development of a deep learning wide-baseline stereo matching workflow for 4D monitoring of an alpine glacier with low-cost time-lapse cameras.
-        \href{https://doi.org/10.1007/s41064-023-00272-w}{[Paper]} \href{https://github.com/franioli/icepy4d}{[Code]}
-    }
-
-    \cvent{18 - 24/\newline09/2022}{Summer School of Alpine Research}{University of Innsbruck}{Obergurgl (AT)}{%
-        I participated in the Summer School \textit{Close Range Sensing Techniques in Alpine Terrain} organized by Innsbruck University
-        with ISPRS support. \href{https://www.uibk.ac.at/iup/buecher/9783991060819.html}{[Proceedings]}%
-    }
-
-    \cvent{09/2019 - 02/2020}{Visiting student for MSc Thesis}{ETH Zürich, VAW (CH)}{}{%
-        \textit{Evaluation of Airborne Image Velocimetry approaches with low-cost UAVs in riverine environments}. Supervisors: Prof. Livio Pinto{,} Dr. Martin
-        Detert \href{http://doi.org/10.13140/RG.2.2.36679.65446}{[Thesis]} \href{https://doi.org/10.5194/isprs-archives-XLIII-B2-2020-597-2020}{[Paper]}%
-    }
-
-    \cvent{2020}{Internship}{Politecnico di Milano, Dept. of Civil and Environmental Engineering}{}{%   
-        I learnt how to design and carry out topographic and UAV photogrammetric surveys for infrastructure and land monitoring. I learnt basics of AutoCAD for technical drawing from 3D point clouds. I obtained the A1/A3 and A2 UAV licenses with permission for flying in critical scenarios.
-    }
-    \cvent{2019}{Erasmus Exchange}{Aalto University}{Helsinki, Finland}{%
-        Courses in remote sensing, GIS, and environmental engineering.%
-    }
-
-    \cvent{2017 -- 2020}{MSc Environmental Engineering}{Politecnico di Milano}{Milan, Italy}{%
-        Major in Land Monitoring. Thesis on UAV photogrammetry for glacier monitoring. Grade: 110L/110.%
-    }
-
-    \cvent{2014 -- 2017}{BSc Environmental Engineering}{Politecnico di Milano}{Milan, Italy}{%
-        Thesis on UAV snowpack surveys on Belvedere glacier. Grade: 102/110.%
-    }
-
-    %========================
-    % SIDEBAR COLUMN (right)
-    %========================
-    \switchcolumn
     \begin{tcolorbox}[
             enhanced,
             breakable,
@@ -133,7 +35,7 @@
         ]
 
         \begin{metasection}{Personal Details}
-            \icontext{MapMarker}{12}{Milan, Italy}{white}\\[4pt]
+            \icontext{MapMarker}{12}{Turin, Italy}{white}\\[4pt]
             \icontext{Male}{12}{03/09/1995}{white}\\[4pt]
             \iconhref{Orcid}{12}{\small 0000-0001-7429-891X}{https://orcid.org/0000-0001-7429-891X}{white}\\[4pt]
             \iconhref{Envelope}{12}{\small francescoioli@cnr.it}{francescoioli@cnr.it}{white}\\[4pt]
@@ -225,6 +127,99 @@
         \end{metasection}
 
     \end{tcolorbox}
+
+    %========================
+    % RIGHT COLUMN (MAIN)
+    %========================
+    \switchcolumn % <--- Switch to Right Column
+
+    \vspace*{-10pt} % Pull it up to align with top of photo
+    {\color{sectcol}\HUGE\textbf{\uppercase{Francesco Ioli}}} \\[6pt]
+    {\Large\textbf{Geomatics Researcher \& Photogrammetry Specialist}} \\[4pt]
+    {\large PhD in Geoinformatics | CNR IRPI (Italy)} \\[4pt]
+    {\color{bgcol}\rule{\linewidth}{1pt}} % Horizontal divider
+    \vspace{-2pt}
+
+    % ---- Profile -----
+    Post-doctoral researcher at \textbf{CNR IRPI}, specializing in advanced photogrammetry and
+    geoinformatics for environmental monitoring. My research bridges the gap between traditional
+    geomatics and modern computer vision, focusing on \textbf{Deep Learning-based image matching} and
+    automated 3D reconstruction pipelines.
+
+    I possess extensive experience in multi-scale 4D monitoring, ranging from \textbf{low-cost
+        terrestrial sensors} for high-frequency glacier dynamics to \textbf{satellite multi-view stereo}
+    for regional mass balance studies (developed at \textbf{University of Zurich}). A strong advocate
+    for Open Science, I actively develop open-source tools (e.g. Deep-Image-Matching) and manage
+    large-scale geospatial datasets. My background includes rigorous field expertise as a certified UAV
+    pilot and a strong commitment to teaching photogrammetry and statistics.
+
+    % ---- Degree -----
+    \cvsection{Degree}
+
+    \cvent{2021 -- 2024}{PhD Environmental and Infrastructure Engineering}{Politecnico di Milano}{Milan, Italy}{%
+        Major in Geoinformatics. \href{https://hdl.handle.net/10589/224092}{PhD Thesis}: \textit{Multi-temporal and Multi-scale photogrammetry for Alpine Glacier Monitoring}. Grade: Cum Laude.\newline
+        I developed an image-based system with low-cost stereo cameras for short-term 4D glacier monitoring. I developed a software pipeline for daily 3D reconstruction with extreme-wide baseline between the stereo cameras using deep learning feature matching. I contributed to \href{https://github.com/3DOM-FBK/deep-image-matching}{Deep-Image-Matching}, a multi-view image matching library with deep learning for SfM. I applied UAV photogrammetry for structural health assessment, including automated crack detection on concrete bridges, and cultural heritage documentation.
+        %
+    }
+
+    % ----- Work experience -----
+    \cvsection{Current employment}
+
+    \cvent{06/2025 -- present}{Post-doctoral Researcher}{CNR IRPI}{Turin, Italy}{%
+        Research on photogrammetry and 3D reconstruction pipelines for geo-hydrological hazard monitoring. Development of automated processing workflows for UAV and satellite imagery.%
+    }
+
+    \cvsection{Previous work experience}
+
+    \cvent{07/2025 -- 12/2025}{External consultant (20\%) }{University of Zurich, Dept. of Geography}{Zurich, Switzerland}{%
+        I completed the development of automated pipelines for regional-to-global-scale DEM reconstruction using satellite multi-view stereo, with applications in glacier mass balance studies. for Glambie-2 Glacier Mass Balance Intercomparison Exercise submission....Leveraged HPC clusters (Slurm) for large-scale multi-view stereo processing.
+        %
+    }
+
+    \cvent{10/2024 -- 06/2025}{Post-doctoral Researcher}{University of Zurich, Dept. of Geography}{Zurich, Switzerland}{%
+        I developed automated pipelines for large-scale DEM reconstruction using satellite multi-view stereo, with applications in glacier mass balance studies.%
+    }
+
+    \cvent{2022}{Topographic technical consultant (part-time)}{Prof. Alberto Bianchi}{}{%
+        Topographic consultant for the Technical Consultant of Office and Part (CTU) R.G. 717/2019%
+    }
+
+    \cvent{2022}{Topographic technician (part-time)}{Gini Telecom}{}{%
+        UAV surveys for telecommunication antennas%
+    }
+
+    % ---- Education and training -----
+    \cvsection{Education and training}
+
+    \cvent{04/2022-07/2022}{Visiting PhD student}{University of Twente, ITC (NL)}{}{%
+        Development of a deep learning wide-baseline stereo matching workflow for 4D monitoring of an alpine glacier with low-cost time-lapse cameras.
+        \href{https://doi.org/10.1007/s41064-023-00272-w}{[Paper]} \href{https://github.com/franioli/icepy4d}{[Code]}
+    }
+
+    \cvent{18 - 24/\newline09/2022}{Summer School of Alpine Research}{University of Innsbruck}{Obergurgl (AT)}{%
+        I participated in the Summer School \textit{Close Range Sensing Techniques in Alpine Terrain} organized by Innsbruck University
+        with ISPRS support. \href{https://www.uibk.ac.at/iup/buecher/9783991060819.html}{[Proceedings]}%
+    }
+
+    \cvent{09/2019 - 02/2020}{Visiting student for MSc Thesis}{ETH Zürich, VAW (CH)}{}{%
+        \textit{Evaluation of Airborne Image Velocimetry approaches with low-cost UAVs in riverine environments}. Supervisors: Prof. Livio Pinto{,} Dr. Martin
+        Detert \href{http://doi.org/10.13140/RG.2.2.36679.65446}{[Thesis]} \href{https://doi.org/10.5194/isprs-archives-XLIII-B2-2020-597-2020}{[Paper]}%
+    }
+
+    \cvent{2020}{Internship}{Politecnico di Milano, Dept. of Civil and Environmental Engineering}{}{%   
+        I learnt how to design and carry out topographic and UAV photogrammetric surveys for infrastructure and land monitoring. I learnt basics of AutoCAD for technical drawing from 3D point clouds. I obtained the A1/A3 and A2 UAV licenses with permission for flying in critical scenarios.
+    }
+    \cvent{2019}{Erasmus Exchange}{Aalto University}{Helsinki, Finland}{%
+        Courses in remote sensing, GIS, and environmental engineering.%
+    }
+
+    \cvent{2017 -- 2020}{MSc Environmental Engineering}{Politecnico di Milano}{Milan, Italy}{%
+        Major in Land Monitoring. Thesis on UAV photogrammetry for glacier monitoring. Grade: 110L/110.%
+    }
+
+    \cvent{2014 -- 2017}{BSc Environmental Engineering}{Politecnico di Milano}{Milan, Italy}{%
+        Thesis on UAV snowpack surveys on Belvedere glacier. Grade: 102/110.%
+    }
 
 \end{paracol}
 
