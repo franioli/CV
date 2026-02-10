@@ -36,10 +36,26 @@
 \RequirePackage{fontawesome5}
 
 %------------------------------------------------------------------------
+%   COLOR PALETTE (Blue Theme)
+%------------------------------------------------------------------------
+\usepackage{xcolor}
+% Main blue (sidebar background, section headers)
+\definecolor{sectcol}{RGB}{25,90,140}
+% Accent blue (employer names, highlights)
+\definecolor{accentcol}{RGB}{65,140,200}
+% Light accent (stars, secondary highlights)
+\definecolor{lightaccent}{RGB}{100,180,230}
+% Dark gray (header, dates, secondary text)
+\definecolor{bgcol}{RGB}{70,70,70}
+% Light gray (divider lines)
+\definecolor{softcol}{RGB}{220,220,220}
+
+%------------------------------------------------------------------------
 %   LOGIC & PAGE LAYOUT
 %------------------------------------------------------------------------
 \RequirePackage{xifthen}
 \RequirePackage{paracol}
+\RequirePackage{graphbox}
 \RequirePackage[a4paper]{geometry}
 \geometry{top=1cm,bottom=1.2cm,left=1.25cm,right=1.25cm}
 \setlength{\parindent}{0pt} \pagestyle{empty}
@@ -49,10 +65,14 @@
 \setlength{\headerstrut}{10pt} % Adjust this value if you need more top padding
 
 % Change column ratio: Sidebar (left) is smaller
-\columnratio{0.32} % 32% Left, 68% Right
-\setlength{\columnsep}{16pt} % Adjust column separation
+\columnratio{0.30} % 30% Left, 70% Right
+\setlength{\columnsep}{8pt} % Adjust column separation
 
-\RequirePackage{graphbox}
+% Define the command to set the background
+% We create a helper command to be called in the document or executed at begin document
+\newcommand{\setsidebarcolor}{%
+    \backgroundcolor{c}[0]{sectcol} % Color column 0 (left) with sectcol
+}
 
 %------------------------------------------------------------------------
 %   BIBLIOGRAPHY MANAGEMENT
@@ -102,21 +122,6 @@
 \RequirePackage[colorlinks,urlcolor=accentcol]{hyperref}
 \RequirePackage[most]{tcolorbox}
 
-%------------------------------------------------------------------------
-%   COLOR PALETTE (Blue Theme)
-%------------------------------------------------------------------------
-\usepackage{xcolor}
-% Main blue (sidebar background, section headers)
-\definecolor{sectcol}{RGB}{25,90,140}
-% Accent blue (employer names, highlights)
-\definecolor{accentcol}{RGB}{65,140,200}
-% Light accent (stars, secondary highlights)
-\definecolor{lightaccent}{RGB}{100,180,230}
-% Dark gray (header, dates, secondary text)
-\definecolor{bgcol}{RGB}{70,70,70}
-% Light gray (divider lines)
-\definecolor{softcol}{RGB}{220,220,220}
-
 
 %=======================================================================%
 %   CUSTOM COMMANDS
@@ -130,7 +135,7 @@
 
 % -- Section header
 \newcommand{\cvsection}[1]{%
-    \vspace{4pt}%
+    % \vspace{4pt}%
     \colorbox{sectcol}{\mystrut\makebox[1\mpwidth][l]{%
             \hspace{2pt}\larrow{bgcol}\hspace{-6pt}\larrow{bgcol}\hspace{-6pt}\larrow{bgcol}\hspace{6pt}%
             \textbf{\textcolor{white}{\uppercase{#1}}}%
@@ -144,11 +149,12 @@
     \begin{center}%
         \textcolor{white}{\large{\uppercase{#1}}}\\
         \normalsize
-        \parbox{0.7\mpwidth}{\textcolor{white}\hrule}
+        \parbox{0.85\linewidth}{\textcolor{white}\hrule} % Reduced width for line
         \par\vspace{2pt}
-        }{%
+    }{%
     \end{center}%
 }
+
 % -- Icon helpers
 \newcommand{\vcenteredhbox}[1]{\begingroup\setbox0=\hbox{#1}\parbox{\wd0}{\box0}\endgroup}
 
@@ -172,25 +178,31 @@
 }
 
 %=======================================================================%
-%   EU-STYLE MAINENTRY
+%   EU-STYLE MAIN ENTRIES
 %=======================================================================%
-\newcommand{\cvent}[5]{% 1=dates 2=position 3=employer 4=place 5=description
-    \begin{tabularx}{1\mpwidth}{@{}L{0.13\mpwidth}@{\hspace{2ex}}X@{}}
-        \textcolor{bgcol}{\footnotesize\textbf{#1}} &
-        \textbf{#2} \vspace{1pt} \newline
-        \textcolor{accentcol}{\textbf{#3}}\ifthenelse{\isempty{#4}}{}{, \textcolor{bgcol}{{\footnotesize\faMapMarker*}\ #4}} \vspace{1pt} \newline
-        \small\textcolor{black}{#5}
+% Usage: \cvent{dates}{position}{employer}{place}{description} -> shows line
+% Usage: \cvent[noline]{dates}{position}{employer}{place}{description} -> hides line
+\newcommand{\cvent}[6][line]{% 1=toggle 2=dates 3=position 4=employer 5=place 6=description
+    \begin{tabularx}{1\mpwidth}{@{}L{0.14\mpwidth}@{\hspace{2ex}}X@{}}
+        \textcolor{bgcol}{\footnotesize\textbf{#2}} &
+        \textbf{#3} \vspace{1pt} \newline
+        \textcolor{accentcol}{\textbf{#4}}\ifthenelse{\isempty{#5}}{}{, \textcolor{bgcol}{{\footnotesize\faMapMarker*}\ #5}} \vspace{1pt} \newline
+        \small\textcolor{black}{#6}
     \end{tabularx}
-    \vspace{4pt}\textcolor{softcol}{\hrule}\vspace{6pt}
+    \par\vspace{4pt}
+    \ifthenelse{\equal{#1}{line}}{\textcolor{softcol}{\hrule}\vspace{6pt}}{\vspace{2pt}}
 }
 
-\newcommand{\cventwide}[5]{% 1=dates 2=position 3=employer 4=place 5=description
+% Usage: \cventwide{dates}{position}{employer}{place}{description} -> shows line
+% Usage: \cventwide[noline]{dates}{position}{employer}{place}{description} -> hides line
+\newcommand{\cventwide}[6][line]{% 1=toggle 2=dates 3=position 4=employer 5=place 6=description
     \noindent
-    \begin{tabularx}{\linewidth}{@{}p{0.12\linewidth} X@{}}
-        \textcolor{bgcol}{\footnotesize\textbf{#1}} &
-        {\textbf{#2} \hfill \textcolor{accentcol}{\textbf{#3}} \ifthenelse{\isempty{#4}}{}{, \textcolor{bgcol}{{\footnotesize\faMapMarker*}\ #4}}} \\[2pt] & \small\textcolor{black}{#5}
+    \begin{tabularx}{\linewidth}{@{}p{0.10\linewidth} X@{}}
+        \textcolor{bgcol}{\footnotesize\textbf{#2}} &
+        {\textbf{#3} \hfill \textcolor{accentcol}{\textbf{#4}} \ifthenelse{\isempty{#5}}{}{, \textcolor{bgcol}{{\footnotesize\faMapMarker*}\ #5}}} \\[2pt] & \small\textcolor{black}{#6}
     \end{tabularx}
-    \vspace{4pt}\textcolor{softcol}{\hrule}\vspace{6pt}
+    \par\vspace{4pt}
+    \ifthenelse{\equal{#1}{line}}{\textcolor{softcol}{\hrule}\vspace{6pt}}{\vspace{2pt}}
 }
 
 %=======================================================================%

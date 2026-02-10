@@ -1,4 +1,3 @@
-
 \documentclass{cv_style} % <--- Load the custom CV class
 
 % Add bibliography resource
@@ -35,7 +34,7 @@
     % Name Header
     {\noindent\color{sectcol}\HUGE\textbf{\uppercase{Francesco Ioli}}} \\[6pt]
     {\Large\textbf{Geomatics Researcher at CNR IRPI}} \\[4pt]
-    {\large PhD in Geoinformatics} \\[0pt]
+    {\large PhD in Geomatics} \\[0pt]
     {\color{bgcol}\rule{\linewidth}{1pt}} % Horizontal divider
     \vspace{0em} % Space after divider
 
@@ -55,6 +54,11 @@
 
 \end{paracol} % Close the 2-column layout here temporarily
 
+\vspace{8pt}
+
+% Set background for the left column (index 0)
+\backgroundcolor{c[0]}{sectcol}
+
 \begin{paracol}{2}
     %========================
     % LEFT COLUMN (SIDEBAR)
@@ -65,109 +69,111 @@
     \vspace*{0pt}
 
     % Sidebar Content
-    \begin{tcolorbox}[
-            enhanced,
-            breakable,
-            colback=sectcol,
-            colframe=sectcol,
-            boxrule=0pt,
-            arc=0pt,
-            left=3mm,right=3mm,top=2mm,bottom=2mm
-        ]
+    % \begin{tcolorbox}[
+    %         enhanced,
+    %         breakable,
+    %         colback=sectcol,
+    %         colframe=sectcol,
+    %         boxrule=0pt,
+    %         arc=0pt,
+    %         left=3mm,right=3mm,top=2mm,bottom=2mm
+    %     ]
 
-        \begin{metasection}{Personal Details}
-            \icontext{MapMarker}{12}{Turin, Italy}{white}\\[4pt]
-            \icontext{Male}{12}{03/09/1995}{white}\\[4pt]
-            \iconhref{Orcid}{12}{\small 0000-0001-7429-891X}{https://orcid.org/0000-0001-7429-891X}{white}\\[4pt]
-            \iconhref{Envelope}{12}{\small francescoioli@cnr.it}{francescoioli@cnr.it}{white}\\[4pt]
-            % \iconhref{Globe}{12}{franioli.github.io}{https://franioli.github.io}{white}\\[4pt]
-            \iconhref{Github}{12}{github.com/franioli}{https://github.com/franioli}{white}\\[4pt]
-            \iconhref{Linkedin}{12}{francesco-ioli}{https://www.linkedin.com/in/francesco-ioli-640061160/}{white}\\[4pt]
-            \iconhref{GraduationCap}{12}{Google Scholar}{https://scholar.google.com/citations?user=hZkC2UMAAAAJ}{white}\\[4pt]
-            \iconhref{ChartLine}{12}{H-Index: 12}{https://www.scopus.com/authid/detail.uri?authorId=57219022961}{white}\\[4pt]
-        \end{metasection}
+    \begin{metasection}{Personal Details}
+        \icontext{MapMarker}{12}{Turin, Italy}{white}\\[4pt]
+        \icontext{Male}{12}{03/09/1995}{white}\\[4pt]
+        \iconhref{Orcid}{12}{\small 0000-0001-7429-891X}{https://orcid.org/0000-0001-7429-891X}{white}\\[4pt]
+        \iconhref{Envelope}{12}{\small francescoioli@cnr.it}{francescoioli@cnr.it}{white}\\[4pt]
+        % \iconhref{Globe}{12}{franioli.github.io}{https://franioli.github.io}{white}\\[4pt]
+        \iconhref{Github}{12}{github.com/franioli}{https://github.com/franioli}{white}\\[4pt]
+        \iconhref{Linkedin}{12}{francesco-ioli}{https://www.linkedin.com/in/francesco-ioli-640061160/}{white}\\[4pt]
+        \iconhref{GraduationCap}{12}{Google Scholar}{https://scholar.google.com/citations?user=hZkC2UMAAAAJ}{white}\\[4pt]
+        \iconhref{ChartLine}{12}{H-Index: 12}{https://www.scopus.com/authid/detail.uri?authorId=57219022961}{white}\\[4pt]
+    \end{metasection}
 
-        \begin{metasection}{Languages}
-            \textcolor{white}{
-                \icontext{Comment}{10}{Italian}{white} (Native)\\[4pt]
-                \icontext{GlobeAmericas}{10}{English}{white} C1 (IELTS 2019)
-            }
-        \end{metasection}
+    \begin{metasection}{Languages}
+        \textcolor{white}{
+            \icontext{Comment}{10}{Italian}{white} (Native)\\[4pt]
+            \icontext{GlobeAmericas}{10}{English}{white} C1 (IELTS 2019)
+        }
+    \end{metasection}
 
-        \begin{metasection}{Programming}
-            \textcolor{white}{
-                \icontext{Python}{10}{Python}{white}\ \icon{Star}{8}{lightaccent}\icon{Star}{8}{lightaccent}\icon{Star}{8}{lightaccent}\icon{Star}{8}{lightaccent}\\[4pt]
-                \icontext{Microchip}{10}{Matlab}{white}\ \icon{Star}{8}{lightaccent}\icon{Star}{8}{lightaccent}\icon{Star}{8}{lightaccent}\icon{Star}{8}{white}\\[4pt]
-                \icontext{Code}{10}{C++}{white}\ \icon{Star}{8}{lightaccent}\icon{Star}{8}{white}\icon{Star}{8}{white}\icon{Star}{8}{white}\\[4pt]
-                \icontext{Terminal}{10}{Bash/Shell}{white}\ \icon{Star}{8}{lightaccent}\icon{Star}{8}{lightaccent}\icon{Star}{8}{white}\icon{Star}{8}{white}\\[4pt]
-            }
-        \end{metasection}
+    \begin{metasection}{Programming}
+        \textcolor{white}{
+            \icontext{Python}{10}{Python}{white}\ \icon{Star}{8}{lightaccent}\icon{Star}{8}{lightaccent}\icon{Star}{8}{lightaccent}\icon{Star}{8}{lightaccent}\\[4pt]
+            \icontext{Microchip}{10}{Matlab}{white}\ \icon{Star}{8}{lightaccent}\icon{Star}{8}{lightaccent}\icon{Star}{8}{lightaccent}\icon{Star}{8}{white}\\[4pt]
+            \icontext{Code}{10}{C++}{white}\ \icon{Star}{8}{lightaccent}\icon{Star}{8}{white}\icon{Star}{8}{white}\icon{Star}{8}{white}\\[4pt]
+            \icontext{Terminal}{10}{Bash/Shell}{white}\ \icon{Star}{8}{lightaccent}\icon{Star}{8}{lightaccent}\icon{Star}{8}{white}\icon{Star}{8}{white}\\[4pt]
+        }
+    \end{metasection}
 
-        \begin{metasection}{Photogrammetry \& LiDAR}
-            \textcolor{white}{
-                \customicontext{assets/metashape}{10}{Agisoft Metashape}{white}\\[2pt]
-                \customicontext{assets/photomodeler}{10}{Photomodeler}{white}\\[2pt]
-                \customicontext{assets/cloudcompare}{10}{CloudCompare}{white}\\[2pt]
-                \customicontext{assets/icon_pcd}{10}{COLMAP MicMac}{white}\\[2pt]
-                \customicontext{assets/logo_odm}{10}{OpenMVG ODM}{white}\\[2pt]
-            }
-        \end{metasection}
+    \begin{metasection}{Photogrammetry \& LiDAR}
+        \textcolor{white}{
+            \customicontext{assets/metashape}{10}{Agisoft Metashape}{white}\\[2pt]
+            \customicontext{assets/photomodeler}{10}{Photomodeler}{white}\\[2pt]
+            \customicontext{assets/cloudcompare}{10}{CloudCompare}{white}\\[2pt]
+            \customicontext{assets/icon_pcd}{10}{COLMAP $\cdot$ MicMac}{white}\\[2pt]
+            \customicontext{assets/logo_odm}{10}{OpenMVG $\cdot$ OpenDroneMap}{white}\\[2pt]
+        }
+    \end{metasection}
 
-        \begin{metasection}{Tools}
-            \textcolor{white}{
-                \customicontext{assets/pytorch}{10}{PyTorch}{white}\\[2pt]
-                \icontext{Database}{10}{PostgreSQL PostGIS}{white}\\[2pt]
-                \customicontext{assets/docker}{10}{Docker}{white}\\[2pt]
-                \icontext{Cogs}{10}{Raspberry Arduino}{white}\\[2pt]
-                \icontext{Github}{10}{Git GitHub}{white}\\[2pt]
-                \icontext{FileCode}{10}{LaTeX}{white}\\[2pt]
-            }
-        \end{metasection}
+    \newpage % Force new page for better layout
+    \vspace*{-\topskip}
+    \vspace*{0pt} % Force top margin on the new page
 
-        \begin{metasection}{Other Software}
-            \textcolor{white}{
-                \icontext{Globe}{10}{QGIS ESRI ArcGIS}{white}\\[2pt]
-                \icontext{Satellite}{10}{RTKLib Leica Infinity}{white}\\[2pt]
-                \icontext{Palette}{10}{Photoshop Lightroom}{white}\\[2pt]
-                \icontext{FileImage}{10}{GIMP Inkscape}{white}\\[2pt]
-                \icontext{DraftingCompass}{10}{AutoCAD}{white}\\[2pt]
-            }
-        \end{metasection}
+    \begin{metasection}{Tools}
+        \textcolor{white}{
+            \customicontext{assets/pytorch}{10}{PyTorch}{white}\\[2pt]
+            \icontext{Database}{10}{PostgreSQL $\cdot$ PostGIS}{white}\\[2pt]
+            \customicontext{assets/docker}{10}{Docker}{white}\\[2pt]
+            \icontext{Cogs}{10}{Raspberry $\cdot$ Arduino}{white}\\[2pt]
+            \icontext{Github}{10}{Git $\cdot$ GitHub}{white}\\[2pt]
+            \icontext{FileCode}{10}{LaTeX}{white}\\[2pt]
+        }
+    \end{metasection}
 
-        \begin{metasection}{Operating Systems}
-            \textcolor{white}{
-                \Large\icon{Linux}{20}{white}\ \Large\icon{Windows}{20}{white}
-            }
-        \end{metasection}
+    \begin{metasection}{Other Software}
+        \textcolor{white}{
+            \icontext{Globe}{10}{QGIS $\cdot$ ESRI ArcGIS}{white}\\[2pt]
+            \icontext{Satellite}{10}{RTKLib $\cdot$ Leica Infinity}{white}\\[2pt]
+            \icontext{Palette}{10}{Photoshop $\cdot$ Lightroom}{white}\\[2pt]
+            \icontext{FileImage}{10}{GIMP $\cdot$ Inkscape}{white}\\[2pt]
+            \icontext{DraftingCompass}{10}{AutoCAD}{white}\\[2pt]
+        }
+    \end{metasection}
 
-        \begin{metasection}{Infrastructure}
-            \textcolor{white}{
-                \icontext{Server}{10}{HPC}{white}\\[2pt]
-                \footnotesize{Slurm workload manager}\\[6pt]
-                \icontext{Cloud}{10}{Virtualization}{white}\\[2pt]
-                \footnotesize{Proxmox \& OpenStack (client)}
-            }
-        \end{metasection}
+    \begin{metasection}{Operating Systems}
+        \icontext{Linux}{10}{Linux}{white}\\[2pt]
+        \icontext{Windows}{10}{Windows}{white}\\[2pt]
+    \end{metasection}
 
-        \begin{metasection}{Hobbies}
-            \textcolor{white}{
-                \customicon{assets/mountain}{20}\
-                \icon{Camera}{18}{white}\
-                \icon{Bicycle}{18}{white}
-            }
-        \end{metasection}
+    \begin{metasection}{HPC Infrastructure}
+        \textcolor{white}{
+            \icontext{Server}{10}{Slurm workload manager}{white}\\[4pt]
+            \icontext{Microchip}{10}{Virtualization}{white}\\[2pt]
+            \footnotesize{Proxmox $\cdot$ OpenStack (client)}\\[4pt]
+            \icontext{Cloud}{10}{Cloud Computing}{white}\\[2pt]
+            \footnotesize{DigitalOcean $\cdot$ Lambda.ai}
+        }
+    \end{metasection}
 
-        % \begin{metasection}{Certifications}
-        %     \textcolor{white}{
-        %         \icontext{Check}{10}{Professional Engineer}{white}\\[2pt]
-        %         \footnotesize{Italian \textit{Esame di Stato} (Civil/Env)}\\[6pt]
-        %         \icontext{Plane}{10}{UAS Pilot License}{white}\\[2pt]
-        %         \footnotesize{EASA A2 Open \& Critical Scenario}\\[6pt]
-        %         \icontext{Car}{10}{Driver's License (B)}{white}
-        %     }
-        % \end{metasection}
+    \begin{metasection}{Hobbies}
+        \textcolor{white}{
+            \customicon{assets/mountain}{20}\
+            \icon{Camera}{18}{white}\
+            \icon{Bicycle}{18}{white}
+        }
+    \end{metasection}
 
-    \end{tcolorbox}
+    % \begin{metasection}{Certifications}
+    %     \textcolor{white}{
+    %         \icontext{Check}{10}{Professional Engineer}{white}\\[2pt]
+    %         \footnotesize{Italian \textit{Esame di Stato} (Civil/Env)}\\[6pt]
+    %         \icontext{Plane}{10}{UAS Pilot License}{white}\\[2pt]
+    %         \footnotesize{EASA A2 Open \& Critical Scenario}\\[6pt]
+    %         \icontext{Car}{10}{Driver's License (B)}{white}
+    %     }
+    % \end{metasection}
 
     \switchcolumn % Switch to Right column
 
@@ -176,13 +182,14 @@
     %========================
     % Force Reset
     \vspace*{-\topskip}
-    \vspace*{1pt}
+    \vspace*{0pt}
 
     % ---- Degree -----
     \cvsection{Degree}
 
-    \cvent{2021 -- 2024}{PhD Environmental and Infrastructure Engineering}{Politecnico di Milano}{Milan, Italy}{%
-        Major in Geoinformatics. \href{https://hdl.handle.net/10589/224092}{PhD Thesis}: \textit{Multi-temporal and Multi-scale photogrammetry for Alpine Glacier Monitoring}. Grade: Cum Laude.\newline
+    \cvent[noline]{2021 -- 2024}{PhD Environmental and Infrastructure Engineering}{Politecnico di Milano}{Milan, Italy}{%
+        Major in Geomatics. Grade: Cum Laude.\newline
+        Thesis: \href{https://hdl.handle.net/10589/224092}{\textit{Multi-temporal and Multi-scale photogrammetry for Alpine Glacier Monitoring}}. Supervisor: prof. L. Pinto, co-supervisor: prof. F. Nex. \newline
         I developed an image-based system with low-cost stereo cameras for short-term 4D glacier monitoring. I developed a software pipeline for daily 3D reconstruction with extreme-wide baseline between the stereo cameras using deep learning feature matching. I contributed to \href{https://github.com/3DOM-FBK/deep-image-matching}{Deep-Image-Matching}, a multi-view image matching library with deep learning for SfM. I applied UAV photogrammetry for structural health assessment, including automated crack detection on concrete bridges, and cultural heritage documentation.
         %
     }
@@ -190,64 +197,68 @@
     % ----- Work experience -----
     \cvsection{Current employment}
 
-    \cvent{06/2025 -- present}{Post-doctoral Researcher}{CNR IRPI}{Turin, Italy}{%
-        Research on photogrammetry and 3D reconstruction pipelines for geo-hydrological hazard monitoring. Development of automated processing workflows for UAV and satellite imagery.%
+    \cvent[noline]{06/2025 -- present}{Post-doctoral Researcher}{CNR IRPI}{Turin, Italy}{%
+        Developing automated low-cost image analysis workflows for glacier instability risk management at Planpincieux Glacier (Mont Blanc, Italy). Enhancing the current monitoring systems using terrestrial stereoscopic time-lapse cameras for kinematics detection, ice avalanche monitoring, and velocity computation via Digital Image Correlation and Structure-from-Motion techniques. Results directly support expert decision-making for glacier instability risk mitigation.
+        Working on historical aerial photogrammetry for the reconstruction of periglacier debris volume estimation.
     }
 
     % ---- Previous work experience -----
     \cvsection{Previous work experience}
 
     \cvent{07/2025 -- 12/2025}{External consultant (20\%) }{University of Zurich, Dept. of Geography}{Zurich, Switzerland}{%
-        I completed the development of automated pipelines for regional-to-global-scale DEM reconstruction using satellite multi-view stereo, with applications in glacier mass balance studies. for Glambie-2 Glacier Mass Balance Intercomparison Exercise submission....Leveraged HPC clusters (Slurm) for large-scale multi-view stereo processing.
-        %
+        Finalized automated pipelines for regional-to-global scale Digital Elevation Model (DEM) reconstruction from satellite multi-view stereo for the Glambie-2 Glacier Mass Balance Intercomparison Exercise using UZH Slurm-based HPC clusters.%
     }
 
     \cvent{10/2024 -- 06/2025}{Post-doctoral Researcher}{University of Zurich, Dept. of Geography}{Zurich, Switzerland}{%
-        I developed automated pipelines for large-scale DEM reconstruction using satellite multi-view stereo, with applications in glacier mass balance studies.%
+        Developed automated pipelines for large-scale DEM reconstruction using satellite multi-view stereo for regional glacier mass balance assessments.
     }
 
     \cvent{2022}{Topographic technical consultant (part-time)}{Prof. Alberto Bianchi}{}{%
         Topographic consultant for the Technical Consultant of Office and Part (CTU) R.G. 717/2019%
     }
 
-    \cvent{2022}{Topographic technician (part-time)}{Gini Telecom}{}{%
+    \cvent[noline]{2022}{Topographic technician (part-time)}{Gini Telecom}{}{%
         UAV surveys for telecommunication antennas%
     }
 
     % ---- Education and training -----
     \cvsection{Education and training}
 
-    \cvent{04/2022-07/2022}{Visiting PhD student}{University of Twente, ITC (NL)}{}{%
-        Development of a deep learning wide-baseline stereo matching workflow for 4D monitoring of an alpine glacier with low-cost time-lapse cameras.
+    \cvent{04/2022 -- 07/2022}{Visiting PhD student}{University of Twente, ITC (NL)}{}{%
+        Developed a deep learning-based wide-baseline stereo matching workflow for 4D alpine glacier monitoring with low-cost time-lapse cameras.
         \href{https://doi.org/10.1007/s41064-023-00272-w}{[Paper]} \href{https://github.com/franioli/icepy4d}{[Code]}
     }
 
-    \cvent{18 - 24/\newline09/2022}{Summer School of Alpine Research}{University of Innsbruck}{Obergurgl (AT)}{%
-        I participated in the Summer School \textit{Close Range Sensing Techniques in Alpine Terrain} organized by Innsbruck University
+    \cvent{18 -- 24/\newline09/2022}{Summer School of Alpine Research}{University of Innsbruck}{Obergurgl (AT)}{%
+        Summer School \textit{Close Range Sensing Techniques in Alpine Terrain} organized by Innsbruck University
         with ISPRS support. \href{https://www.uibk.ac.at/iup/buecher/9783991060819.html}{[Proceedings]}%
     }
 
-    \cvent{09/2019 - 02/2020}{Visiting student for MSc Thesis}{ETH Zürich, VAW (CH)}{}{%
-        \textit{Evaluation of Airborne Image Velocimetry approaches with low-cost UAVs in riverine environments}. Supervisors: Prof. Livio Pinto{,} Dr. Martin
-        Detert \href{http://doi.org/10.13140/RG.2.2.36679.65446}{[Thesis]} \href{https://doi.org/10.5194/isprs-archives-XLIII-B2-2020-597-2020}{[Paper]}%
+    \cvent{09/2019 -- 02/2020}{Visiting student for MSc Thesis}{ETH Zürich, VAW (CH)}{}{%
+        MSc Thesis: \href{http://doi.org/10.13140/RG.2.2.36679.65446}{\textit{Evaluation of Airborne Image Velocimetry approaches with low-cost UAVs in riverine environments}}.
+        Supervisors: Prof. Livio Pinto{,} Dr. Martin Detert.
+        \href{https://doi.org/10.5194/isprs-archives-XLIII-B2-2020-597-2020}{[Paper]}%
     }
 
     \cvent{2020}{Internship}{Politecnico di Milano, Dept. of Civil and Environmental Engineering}{}{%   
-        I learnt how to design and carry out topographic and UAV photogrammetric surveys for infrastructure and land monitoring. I learnt basics of AutoCAD for technical drawing from 3D point clouds. I obtained the A1/A3 and A2 UAV licenses with permission for flying in critical scenarios.
+        Performed topographic and UAV surveys for infrastructure health monitoring and territorial monitoring. Learnt basics of CAD modeling for technical drawing from 3D point clouds.
+        Obtained A1/A3 and A2 UAV licenses with permission for flying in critial standard scenarios.
     }
     \cvent{2019}{Erasmus Exchange}{Aalto University}{Helsinki, Finland}{%
-        Courses in remote sensing, GIS, and environmental engineering.%
+        Exchange semester with courses in laser scanning, remote sensing, image processing, hydrological modelling.%
     }
 
-    \cvent{2017 -- 2020}{MSc Environmental Engineering}{Politecnico di Milano}{Milan, Italy}{%
-        Major in Land Monitoring. Thesis on UAV photogrammetry for glacier monitoring. Grade: 110L/110.%
+    \cvent{2017 -- 2020}{MSc Environmental and Land Planning Engineering}{Politecnico di Milano}{Milan, Italy}{%
+        Major in Land Monitoring and Diagnostics. Grade: 110L/110.%
     }
 
-    \cvent{2014 -- 2017}{BSc Environmental Engineering}{Politecnico di Milano}{Milan, Italy}{%
-        Thesis on UAV snowpack surveys on Belvedere glacier. Grade: 102/110.%
+    \cvent[noline]{2014 -- 2017}{BSc Environmental and Land Planning Engineering}{Politecnico di Milano}{Milan, Italy}{%
+        Grade: 102/110.%
     }
 
 \end{paracol}
+
+\vspace{8pt}
 
 %=======================================================================%
 %   FULL WIDTH SECTIONS (Below the Sidebar)
@@ -257,7 +268,10 @@
 % ---- Research funding, Grants -----
 \cvsection{Research funding and Grants}
 
-\cvbullet{......MENTION TO CARIPLO PROJECT}
+\cvbullet{
+    \textbf{MOHYCAM} –- \textit{Modified HYdrogeological hazards under complex ClimAte and environmental conditions: Monitoring activities and mitigation strategies} [2025--2027] (Fondazione Cariplo, Grant \#2024-3388 \href{https://www.fondazionecariplo.it/progetto/territori-sicuri/}{\textit{Territori Sicuri}}, €677,735; PI: Prof. Livio Pinto, Politecnico di Milano).\newline
+    \textbf{Contributed to proposal writing} for addressing hydrogeological vulnerabilities at the Belvedere Glacier (Monte Rosa), by  combining advanced glacier dynamics monitoring with community-based risk awareness strategies.
+}
 
 % ----- Publications -----  
 \cvsection{Research Outputs}
@@ -304,7 +318,7 @@
 
     \item \textbf{Belvedere Glacier Open Data \& Web-GIS Platform}: Curated dataset (Zenodo DOI: \href{https://doi.org/10.5281/zenodo.10817029}{10.5281/zenodo.10817029}) and interactive web platform for glacier documentation and storytelling. \href{https://thebelvedereglacier.it/}{[Web-app]}
 
-    \item \textbf{Satellite Multi-View Stereo Pipeline}: Automated HPC workflow (Slurm) for regional-scale DEM reconstruction from satellite imagery, with applications in glacier mass balance (University of Zurich \& CNR IRPI).
+    \item \textbf{Satellite Multi-View Stereo Pipeline}: Automated HPC workflow (Slurm) for regional-scale DEM reconstruction from satellite imagery, with applications in glacier mass balance (University of Zurich).
 
     \item \textbf{COLMAP-SLAM Framework} (Core contributor): Visual odometry system for real-time photogrammetric positioning. \href{https://github.com/3DOM-FBK/COLMAP_SLAM}{[GitHub]} \href{https://doi.org/10.5194/isprs-archives-XLVIII-1-W1-2023-317-202}{[Paper]}
 \end{itemize}
@@ -320,8 +334,9 @@
 % ----- Research supervision and leadership experience -----  
 \cvsection{Research supervision and leadership experience}
 
-\cventwide{2024 -- present}{PhD Co-supervisor}{University of Zurich \& CNR IRPI}{}{%
-    Co-supervision of PhD candidates ..... %
+\cventwide{2024 -- present}{PhD Student Mentoring}{University of Zurich \& CNR IRPI}{}{%
+    Mentoring and co-supervision of PhD candidates R. Pedrelli (UZH) and D. Cardone (CNR IRPI).
+    Providing technical guidance on photogrammetric pipelines, satellite multi-view stereo, and glacier monitoring workflows.
 }
 
 \cventwide{2019 -- 2024}{MSc Thesis Co-supervisor}{Politecnico di Milano}{Milan, Italy}{%
@@ -381,21 +396,23 @@
     \setlength{\itemsep}{1pt}
     \setlength{\parskip}{0pt}
 
-    \item \textbf{2025:} EGU General Assembly, Vienna (Oral) \href{https://meetingorganizer.copernicus.org/EGU25/EGU25-15978.html}{[Abstract]}; Alpine Glaciology Meeting, Innsbruck (Poster).
+    \item \textbf{2025:} EGU - Wien (oral) \href{https://meetingorganizer.copernicus.org/EGU25/EGU25-15978.html}{[Abstract]}{,} Alpine Glaciological Meeting - Innsbruck (poster) \href{https://www.geo.uzh.ch/en/units/rse/news/alpine-glaciology-meeting-2024.html}{[Abstract]}.
 
-    \item \textbf{2024:} EGU General Assembly, Vienna (Oral) \href{https://meetingorganizer.copernicus.org/EGU24/EGU24-16412.html}{[Abstract]}.
+    \item \textbf{2024:} EGU - Wien (oral) \href{https://meetingorganizer.copernicus.org/EGU24/EGU24-16412.html}{[Abstract]}.
 
-    \item \textbf{2023:} ISPRS Geospatial Week, Cairo (Oral); EGU General Assembly, Vienna (Oral); VGC, Dresden (Oral); SIFET Congress, Arezzo (Oral); GeoAI, Turin (Oral).
+    \item \textbf{2023:} EGU - Wien (oral) \href{https://meetingorganizer.copernicus.org/EGU23/EGU23-10018.html}{[Abstract]}{,} ISPRS Geospatial Week - Cairo (oral) \href{https://doi.org/10.5194/isprs-archives-XLVIII-1-W2-2023-1037-2023}{[Paper]}{,} VGC Dresden (oral) \href{https://doi.org/10.25368/2023.194}{[Proceedings]}{,} SIFET congress - Arezzo (IT) (oral) \href{https://www.sifet.org/convengo-2023}{[Link]}{,}  GeoAI - Torino (IT) (oral) \href{https://sites.google.com/view/geo-ai-2023/home}{[Link]}.
 
-    \item \textbf{2022:} EGU General Assembly, Vienna (Oral); ISPRS Congress, Nice (Poster).
+    \item \textbf{2022:} EGU - Wien (oral) \href{https://meetingorganizer.copernicus.org/EGU22/EGU22-7967.html}{[Abstract]}{,} ISPRS Congress - Nice (poster) \href{https://doi.org/10.5194/isprs-archives-XLIII-B2-2022-1025-2022}{[Paper]}.
 \end{itemize}
 
 % --- Peer Review / Memberships (If you have them) ---
 \vspace{6pt}
 \textbf{\footnotesize Memberships \& Peer Review}
 \begin{itemize}
-    \item Reviewer for: \textit{ISPRS Journal of Photogrammetry and Remote Sensing}, \textit{Remote Sensing},
-          \textit{The Cryosphere}.
+    \item Reviewer for: \textit{ISPRS Journal of Photogrammetry and Remote Sensing}, \textit{Remote Sensing
+              (MDPI)}, \textit{Drones (MDPI)}, \textit{Earth Surface Dynamics}, \textit{Geoscientific
+              Instrumentation, Methods and Data Systems}
+
     \item Member of: EGU (European Geosciences Union), SIFET (Italian Society of Photogrammetry and
           Topography).
 \end{itemize}
